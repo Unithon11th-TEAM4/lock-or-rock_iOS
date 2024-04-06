@@ -19,7 +19,7 @@ struct TokenManager {
         UserDefaults.standard.set("\(userId)", forKey: "userId")
     }
     
-    func resetUserToken() {
+    func resetUserId() {
         UserDefaults.standard.removeObject(forKey: "userId")
     }
     
