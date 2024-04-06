@@ -18,6 +18,20 @@
 		47CDEB162BC10A05008382FD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB152BC10A05008382FD /* SnapKit-Dynamic */; };
 		47CDEB192BC10A10008382FD /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB182BC10A10008382FD /* Then */; };
 		47CDEB1C2BC10A21008382FD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB1B2BC10A21008382FD /* Kingfisher */; };
+		47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB1E2BC12CF3008382FD /* QuestionViewController.swift */; };
+		47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB202BC12D79008382FD /* QuestionReactor.swift */; };
+		47CDEB232BC12EAC008382FD /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB222BC12EAC008382FD /* RxCocoa */; };
+		47CDEB252BC12EAC008382FD /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB242BC12EAC008382FD /* RxCocoa-Dynamic */; };
+		47CDEB272BC12EAC008382FD /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB262BC12EAC008382FD /* RxRelay */; };
+		47CDEB292BC12EAC008382FD /* RxRelay-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB282BC12EAC008382FD /* RxRelay-Dynamic */; };
+		47CDEB2B2BC12EAC008382FD /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB2A2BC12EAC008382FD /* RxSwift */; };
+		47CDEB2D2BC12EAC008382FD /* RxSwift-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB2C2BC12EAC008382FD /* RxSwift-Dynamic */; };
+		47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB352BC13D41008382FD /* QuestionButton.swift */; };
+		47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB392BC13E2E008382FD /* Question.swift */; };
+		47CDEB432BC14978008382FD /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB422BC14978008382FD /* UIFont.swift */; };
+		47CDEB442BC14F5C008382FD /* WAGURI.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3F2BC14937008382FD /* WAGURI.otf */; };
+		47CDEB452BC14F5F008382FD /* OAGothic-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */; };
+		47CDEB462BC14F62008382FD /* OAGothic-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB402BC14937008382FD /* OAGothic-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +43,14 @@
 		47CDEAFF2BC107DF008382FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47CDEB022BC107DF008382FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47CDEB042BC107DF008382FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47CDEB1E2BC12CF3008382FD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		47CDEB202BC12D79008382FD /* QuestionReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionReactor.swift; sourceTree = "<group>"; };
+		47CDEB352BC13D41008382FD /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
+		47CDEB392BC13E2E008382FD /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OAGothic-ExtraBold.otf"; sourceTree = "<group>"; };
+		47CDEB3F2BC14937008382FD /* WAGURI.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WAGURI.otf; sourceTree = "<group>"; };
+		47CDEB402BC14937008382FD /* OAGothic-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OAGothic-Medium.otf"; sourceTree = "<group>"; };
+		47CDEB422BC14978008382FD /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,11 +58,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CDEB232BC12EAC008382FD /* RxCocoa in Frameworks */,
+				47CDEB2D2BC12EAC008382FD /* RxSwift-Dynamic in Frameworks */,
+				47CDEB252BC12EAC008382FD /* RxCocoa-Dynamic in Frameworks */,
+				47CDEB2B2BC12EAC008382FD /* RxSwift in Frameworks */,
 				47CDEB102BC109E1008382FD /* ReactorKit in Frameworks */,
 				47CDEB142BC10A05008382FD /* SnapKit in Frameworks */,
 				47CDEB162BC10A05008382FD /* SnapKit-Dynamic in Frameworks */,
 				47CDEB192BC10A10008382FD /* Then in Frameworks */,
+				47CDEB272BC12EAC008382FD /* RxRelay in Frameworks */,
 				47CDEB1C2BC10A21008382FD /* Kingfisher in Frameworks */,
+				47CDEB292BC12EAC008382FD /* RxRelay-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +103,10 @@
 			isa = PBXGroup;
 			children = (
 				47CDEB0A2BC108E4008382FD /* App */,
+				47CDEB3B2BC14906008382FD /* Common */,
+				47CDEB372BC13E15008382FD /* Domain */,
 				47CDEB0B2BC108F0008382FD /* Presentation */,
+				47CDEB3D2BC14927008382FD /* Font */,
 				47CDEB042BC107DF008382FD /* Info.plist */,
 			);
 			path = "lock-or-lock";
@@ -97,6 +128,7 @@
 			children = (
 				0A4F82522BC1460600119796 /* Nickname */,
 				47CDEB0C2BC108F9008382FD /* Home */,
+				47CDEB1D2BC12CDC008382FD /* Question */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -107,6 +139,66 @@
 				47CDEAFA2BC107DC008382FD /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		47CDEB1D2BC12CDC008382FD /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB2E2BC1315F008382FD /* SubViews */,
+				47CDEB1E2BC12CF3008382FD /* QuestionViewController.swift */,
+				47CDEB202BC12D79008382FD /* QuestionReactor.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
+		47CDEB2E2BC1315F008382FD /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB352BC13D41008382FD /* QuestionButton.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		47CDEB372BC13E15008382FD /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB382BC13E1D008382FD /* Entity */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		47CDEB382BC13E1D008382FD /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB392BC13E2E008382FD /* Question.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		47CDEB3B2BC14906008382FD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB412BC1496E008382FD /* Extension */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		47CDEB3D2BC14927008382FD /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB3F2BC14937008382FD /* WAGURI.otf */,
+				47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */,
+				47CDEB402BC14937008382FD /* OAGothic-Medium.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		47CDEB412BC1496E008382FD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB422BC14978008382FD /* UIFont.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +223,12 @@
 				47CDEB152BC10A05008382FD /* SnapKit-Dynamic */,
 				47CDEB182BC10A10008382FD /* Then */,
 				47CDEB1B2BC10A21008382FD /* Kingfisher */,
+				47CDEB222BC12EAC008382FD /* RxCocoa */,
+				47CDEB242BC12EAC008382FD /* RxCocoa-Dynamic */,
+				47CDEB262BC12EAC008382FD /* RxRelay */,
+				47CDEB282BC12EAC008382FD /* RxRelay-Dynamic */,
+				47CDEB2A2BC12EAC008382FD /* RxSwift */,
+				47CDEB2C2BC12EAC008382FD /* RxSwift-Dynamic */,
 			);
 			productName = "lock-or-lock";
 			productReference = 47CDEAF32BC107DC008382FD /* lock-or-lock.app */;
@@ -182,6 +280,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CDEB462BC14F62008382FD /* OAGothic-Medium.otf in Resources */,
+				47CDEB452BC14F5F008382FD /* OAGothic-ExtraBold.otf in Resources */,
+				47CDEB442BC14F5C008382FD /* WAGURI.otf in Resources */,
 				47CDEB002BC107DF008382FD /* Assets.xcassets in Resources */,
 				47CDEB032BC107DF008382FD /* Base in Resources */,
 			);
@@ -196,6 +297,11 @@
 			files = (
 				47CDEAFB2BC107DC008382FD /* HomeViewController.swift in Sources */,
 				47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */,
+				47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */,
+				47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */,
+				47CDEB432BC14978008382FD /* UIFont.swift in Sources */,
+				47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */,
+				47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */,
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
 				0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */,
 			);
@@ -487,6 +593,36 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 47CDEB1A2BC10A21008382FD /* XCRemoteSwiftPackageReference "kingfisher" */;
 			productName = Kingfisher;
+		};
+		47CDEB222BC12EAC008382FD /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CDEB0D2BC109D7008382FD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		47CDEB242BC12EAC008382FD /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CDEB0D2BC109D7008382FD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		47CDEB262BC12EAC008382FD /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CDEB0D2BC109D7008382FD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		47CDEB282BC12EAC008382FD /* RxRelay-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CDEB0D2BC109D7008382FD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxRelay-Dynamic";
+		};
+		47CDEB2A2BC12EAC008382FD /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CDEB0D2BC109D7008382FD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		47CDEB2C2BC12EAC008382FD /* RxSwift-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CDEB0D2BC109D7008382FD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxSwift-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
