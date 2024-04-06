@@ -32,7 +32,7 @@ struct QuestionResponse: Codable {
 struct QuestionAnswerResponse: Codable {
     let answerId: Int
     let content: String
-    let url: String?
+    let url: String
     
     enum CodingKeys: String, CodingKey {
         case answerId = "answer_id"

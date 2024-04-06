@@ -10,6 +10,12 @@ import SnapKit
 
 final class ReportView: UIView {
     
+    var reportReponse: ReportReponse? {
+        didSet {
+            configure()
+        }
+    }
+    
     // MARK: - Properties
     private let imageBackgroundView: UIImageView = {
         $0.image = UIImage(named: "card")
@@ -18,13 +24,13 @@ final class ReportView: UIView {
     
     var keywordStackView: UIStackView = {
         $0.axis = .vertical
-        $0.spacing = 5
+        $0.spacing = 15
         $0.alignment = .center
         return $0
     }(UIStackView())
     
     let nicknameLabel: UILabel = {
-        $0.text = "친절한 너구리 님!"
+        $0.text = "불러오는 중!"
         $0.font = UIFont.oAGothicExtraBold(size: 28)
         $0.textColor = .black
         return $0
@@ -70,13 +76,33 @@ final class ReportView: UIView {
         }
         
         keywordStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
+            make.top.equalToSuperview().inset(60)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
         nicknameLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func configure() {
+        guard let reportReponse else { return }
+        nicknameLabel.text = "\(reportReponse.data.nickname) 님!"
+        
+        for memberPersonality in reportReponse.data.memberPersonality {
+            let keywordLabel: UILabel = {
+                    let attributedString = NSMutableAttributedString(string: "\(memberPersonality.content) \(memberPersonality.verb)")
+                    let strCount = memberPersonality.content.count
+                    
+                attributedString.addAttribute(.font, value: UIFont.oAGothicExtraBold(size: 11), range: NSRange(location: 0, length: attributedString.length))
+                    attributedString.addAttribute(.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: strCount))
+                    attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: strCount, length: 1))
+                    $0.attributedText = attributedString
+                    return $0
+                }(UILabel())
+            
+            keywordStackView.addArrangedSubview(keywordLabel)
         }
     }
 }

@@ -46,5 +46,5 @@ struct ReportDataResponse: Codable {
 
 struct memberPersonalityResponse: Codable {
     let content: String
-    let verb: String?
+    let verb: String
 }

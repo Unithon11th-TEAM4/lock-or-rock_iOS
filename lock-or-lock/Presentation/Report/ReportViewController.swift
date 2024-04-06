@@ -18,7 +18,7 @@ class ReportViewController: UIViewController {
     
     // MARK: - Properties
     private let nameTitleLabel: UILabel = {
-        $0.text = "000님의\n레포트입니다."
+        $0.text = "불러오는 중"
         $0.font = UIFont.waguri(size: 25)
         $0.textColor = .white
         $0.textAlignment = .center
@@ -156,6 +156,12 @@ extension ReportViewController: View {
     }
     
     func bindState(reactor: ReportReactor) {
-        
+        reactor.state
+            .map { $0.reportReponse }
+            .bind { [weak self] reportReponse in
+                self?.nameTitleLabel.text = "\(reportReponse.data.nickname)님의\n레포트입니다."
+                self?.reportView.reportReponse = reportReponse
+            }
+            .disposed(by: disposeBag)
     }
 }
