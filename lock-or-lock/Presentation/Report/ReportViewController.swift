@@ -126,9 +126,35 @@ extension ReportViewController: View {
     }
 
     func bindAction(reactor: ReportReactor) {
-        
-    }
+        instagramButton.rx.tap
+            .bind {
+                if let storiesUrl = URL(string: "instagram-stories://share?source_application=" +
+                                        "921665266122530") {
+                    if UIApplication.shared.canOpenURL(storiesUrl) {
+                        let renderer = UIGraphicsImageRenderer(size: self.reportView.bounds.size)
 
+                        let renderImage = renderer.image { _ in
+                            self.reportView.drawHierarchy(in: self.reportView.bounds, afterScreenUpdates: true)
+                        }
+                        guard let imageData = renderImage.pngData() else { return }
+                        let pasteboardItems: [String: Any] = [
+                            "com.instagram.sharedSticker.stickerImage": imageData,
+                            "com.instagram.sharedSticker.backgroundTopColor": "#F7550F",
+                            "com.instagram.sharedSticker.backgroundBottomColor": "#D93400"
+                        ]
+                        let pasteboardOptions = [
+                            UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
+                        ]
+                        UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
+                        UIApplication.shared.open(storiesUrl, options: [:], completionHandler: nil)
+                    } else {
+                        print("User doesn't have instagram on their device.")
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
     func bindState(reactor: ReportReactor) {
         
     }
