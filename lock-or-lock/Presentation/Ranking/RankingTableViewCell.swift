@@ -14,9 +14,11 @@ class RankingTableViewCell: UITableViewCell {
     private let containerView1 = UIView().then {
         $0.backgroundColor = UIColor(named: "lightGray")
         $0.layer.cornerRadius = 6
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor.black.cgColor
     }
     
-    private let rankNumber = UILabel().then {
+    let rankNumber = UILabel().then {
         $0.text = "1"
         $0.font = .waguri(size: 20)
     }
@@ -24,9 +26,11 @@ class RankingTableViewCell: UITableViewCell {
     private let containerView2 = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 6
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor.black.cgColor
     }
     
-    private let userName = UILabel().then {
+    let userName = UILabel().then {
         $0.text = "행복한다람쥐"
         $0.font = .oAGothicMedium(size: 18)
     }
@@ -36,10 +40,10 @@ class RankingTableViewCell: UITableViewCell {
         $0.contentMode = .scaleToFill
     }
     
-    private let heartNumber = UILabel().then {
+    let heartNumber = UILabel().then {
         $0.text = "111"
         $0.textColor = UIColor(named: "pink")
-        $0.font = .pretendardMedium(size: 18)
+        $0.font = .waguri(size: 18)
     }
     
     override func awakeFromNib() {
@@ -62,16 +66,21 @@ class RankingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        containerView1.backgroundColor = UIColor(named: "lightGray")
+    }
+    
     private func addSubViews() {
         [containerView1, containerView2].forEach { contentView.addSubview($0) }
         containerView1.addSubview(rankNumber)
         [userName, heartImage, heartNumber].forEach { containerView2.addSubview($0)}
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0))
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0))
+//    }
     
     private func setLayout() {
         containerView1.snp.makeConstraints {
@@ -83,15 +92,14 @@ class RankingTableViewCell: UITableViewCell {
         
         rankNumber.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(18)
-            $0.width.equalTo(14)
+            $0.centerX.equalToSuperview()
         }
         
         containerView2.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.leading.equalTo(containerView1.snp.trailing).offset(10)
-            $0.height.equalTo(50)
+            $0.height.equalTo(55)
         }
         
         userName.snp.makeConstraints {
@@ -109,4 +117,18 @@ class RankingTableViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().offset(-20)
         }
     }
+    
+    func configureCell(at indexPath: IndexPath) {
+        var number = String(indexPath.row + 1)
+        rankNumber.text = number
+        if number == "1" {
+            containerView1.backgroundColor = UIColor(named: "primary")
+        } else if number == "2" {
+            containerView1.backgroundColor = UIColor(named: "orange")
+        } else if number == "3" {
+            containerView1.backgroundColor = UIColor(named: "yellow")
+        }
+    }
+    
+    
 }
