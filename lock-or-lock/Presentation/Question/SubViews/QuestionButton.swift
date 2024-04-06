@@ -34,11 +34,10 @@ final class QuestionButton: UIButton {
     
     // MARK: - Set UI
     private func setButton() {
+        backgroundColor = .white
         setTitle("냠냠", for: .normal)
         setTitleColor(.black, for: .normal)
-        titleLabel?.font = .boldSystemFont(ofSize: 18)
-        backgroundColor = .clear
-        layer.borderColor = UIColor.black.cgColor
+        titleLabel?.font = UIFont.oAGothicExtraBold(size: 20)
         layer.borderWidth = 3
         layer.cornerRadius = 12
         clipsToBounds = true
@@ -59,9 +58,11 @@ final class QuestionButton: UIButton {
     
     private func isSelectedConfigure() {
         if isSelected {
-            layer.borderColor = UIColor.yellow.cgColor
+            setTitleColor(.black, for: .normal)
+            layer.borderColor = UIColor.primary.cgColor
         } else {
-            layer.borderColor = UIColor.black.cgColor
+            setTitleColor(UIColor.lightGray, for: .normal)
+            layer.borderColor = UIColor.lightGray.cgColor
         }
     }
     

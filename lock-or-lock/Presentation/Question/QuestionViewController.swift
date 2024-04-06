@@ -24,14 +24,14 @@ class QuestionViewController: UIViewController {
     var disposeBag = DisposeBag()
     
     // MARK: - Properties
-    private let questionNumLabel = PaddingLabel(text: "1/5", font: UIFont.oAGothicExtraBold(size: 18), backgroundColor: .orange, padding: .medium)
+    private let questionNumLabel = PaddingLabel(text: "1/5", font: UIFont.oAGothicExtraBold(size: 18), backgroundColor: .primary, padding: .medium)
     
     private let questionTitleLabel: UILabel = {
         $0.text = "다음 중 지지하는\n 정치사상을 고르세요."
-        $0.font = .boldSystemFont(ofSize: 20)
+        $0.font = UIFont.lockOrLock(font: .oAGothicMedium, size: 20)
         $0.textAlignment = .center
         $0.numberOfLines = 0
-        $0.textColor = .black
+        $0.textColor = .white
         return $0
     }(UILabel())
     
@@ -86,7 +86,7 @@ class QuestionViewController: UIViewController {
     
     // MARK: - Set UI
     private func setView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.dark
     }
     
     private func addView() {
@@ -140,7 +140,7 @@ class QuestionViewController: UIViewController {
         
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(15)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(90)
             make.height.equalTo(64)
         }
     }
@@ -217,14 +217,16 @@ extension QuestionViewController: View {
                         self?.rightBottomButton.isSelected = true
                     }
                     self?.nextButton.isEnabled = true
-                    self?.nextButton.backgroundColor = .orange
+                    self?.nextButton.backgroundColor = .primary
+                    self?.nextButton.layer.borderColor = UIColor.black.cgColor
                 } else {
                     self?.leftTopButton.isSelected = false
                     self?.rightTopButton.isSelected = false
                     self?.leftBottomButton.isSelected = false
                     self?.rightBottomButton.isSelected = false
                     self?.nextButton.isEnabled = false
-                    self?.nextButton.backgroundColor = .gray
+                    self?.nextButton.backgroundColor = UIColor.lightGray
+                    self?.nextButton.layer.borderColor = UIColor.gray.cgColor
                 }
             }
             .disposed(by: disposeBag)
