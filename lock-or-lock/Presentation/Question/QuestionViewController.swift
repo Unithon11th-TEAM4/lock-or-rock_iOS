@@ -177,6 +177,16 @@ extension QuestionViewController: View {
                 self?.reactor.action.onNext(.answerNumber(.rightBottom))
             }
             .disposed(by: disposeBag)
+        
+        nextButton.rx.tap
+            .bind { [weak self] _ in
+                if self?.reactor.currentState.currentQuestionNum == 5 {
+                    self?.reactor.postAnswer()
+                } else {
+                    self?.reactor.appendAnswer()
+                }
+            }
+            .disposed(by: disposeBag)
     }
 
     func bindState(reactor: QuestionReactor) {
@@ -215,6 +225,17 @@ extension QuestionViewController: View {
                     self?.rightBottomButton.isSelected = false
                     self?.nextButton.isEnabled = false
                     self?.nextButton.backgroundColor = .gray
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.currentQuestionNum }
+            .bind { [weak self] questionNum in
+                self?.questionNumLabel.text = "\(questionNum)/5"
+                
+                if questionNum == 5 {
+                    self?.nextButton.setTitle("결과보기", for: .normal)
                 }
             }
             .disposed(by: disposeBag)
