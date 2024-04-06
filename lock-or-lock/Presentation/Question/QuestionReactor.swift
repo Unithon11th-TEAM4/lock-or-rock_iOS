@@ -12,15 +12,19 @@ import ReactorKit
 class QuestionReactor: Reactor {
     
     enum Action {
-        
+        case answerNumber(QuestionButtonType)
+        case appendAnswer(QuestionRequest)
     }
     
     enum Mutation {
-        
+        case answerNumber(QuestionButtonType)
+        case appendAnswer(QuestionRequest)
     }
     
     struct State {
-        
+        var currentAnswerNum: QuestionButtonType?
+        var currentQuestionNum: Int = 1
+        var answerList: [QuestionRequest] = []
     }
     
     var initialState: State
@@ -32,7 +36,10 @@ class QuestionReactor: Reactor {
     // MARK: - Mutate
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        
+        case .answerNumber(let answerNum):
+            return .just(.answerNumber(answerNum))
+        case .appendAnswer(let answer):
+            return .just(.appendAnswer(answer))
         }
     }
     
@@ -41,9 +48,43 @@ class QuestionReactor: Reactor {
         var newState = state
         
         switch mutation {
-        
+        case .answerNumber(let answerNum):
+            newState.currentAnswerNum = answerNum
+        case .appendAnswer(let answer):
+            newState.answerList.append(answer)
+            if newState.currentQuestionNum == 5 {
+                break
+            }
+            newState.currentQuestionNum += 1
+            newState.currentAnswerNum = nil
         }
         
         return newState
+    }
+    
+    func appendAnswer() {
+        let currentQuestionNum = currentState.currentQuestionNum
+        guard let currentAnswerNum = currentState.currentAnswerNum else { return }
+        
+        if currentQuestionNum > 5 {
+            return
+        }
+        
+        switch currentAnswerNum {
+        case .leftTop:
+            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 0)))
+        case .rightTop:
+            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 1)))
+        case .leftBottom:
+            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 2)))
+        case .rightBottom:
+            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 3)))
+        }
+    }
+    
+    // TODO: 퀴즈 제출 API 연결
+    func postAnswer() {
+        appendAnswer()
+        print("5개 완료 - \(currentState.answerList)")
     }
 }

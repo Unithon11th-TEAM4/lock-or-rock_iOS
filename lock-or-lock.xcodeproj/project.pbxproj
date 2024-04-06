@@ -33,6 +33,15 @@
 		47CDEB442BC14F5C008382FD /* WAGURI.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3F2BC14937008382FD /* WAGURI.otf */; };
 		47CDEB452BC14F5F008382FD /* OAGothic-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */; };
 		47CDEB462BC14F62008382FD /* OAGothic-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB402BC14937008382FD /* OAGothic-Medium.otf */; };
+		47CDEB4E2BC15708008382FD /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB4D2BC15708008382FD /* PaddingLabel.swift */; };
+		47CDEB522BC1653E008382FD /* QuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB512BC1653E008382FD /* QuestionRequest.swift */; };
+		47CDEB562BC17C6D008382FD /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB552BC17C6D008382FD /* BaseAPI.swift */; };
+		47CDEB592BC17CC0008382FD /* MoyaProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB582BC17CC0008382FD /* MoyaProvider+Extensions.swift */; };
+		47CDEB5B2BC17D1D008382FD /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB5A2BC17D1D008382FD /* Moya */; };
+		47CDEB5D2BC17D4B008382FD /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB5C2BC17D4B008382FD /* NetworkLogger.swift */; };
+		47CDEB602BC17D90008382FD /* NameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB5F2BC17D90008382FD /* NameService.swift */; };
+		47CDEB622BC1807E008382FD /* NicknameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB612BC1807E008382FD /* NicknameResponse.swift */; };
+		47D8CA952BC19081001B6D19 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CA942BC19081001B6D19 /* TokenManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +62,14 @@
 		47CDEB3F2BC14937008382FD /* WAGURI.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WAGURI.otf; sourceTree = "<group>"; };
 		47CDEB402BC14937008382FD /* OAGothic-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OAGothic-Medium.otf"; sourceTree = "<group>"; };
 		47CDEB422BC14978008382FD /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		47CDEB4D2BC15708008382FD /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		47CDEB512BC1653E008382FD /* QuestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRequest.swift; sourceTree = "<group>"; };
+		47CDEB552BC17C6D008382FD /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		47CDEB582BC17CC0008382FD /* MoyaProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Extensions.swift"; sourceTree = "<group>"; };
+		47CDEB5C2BC17D4B008382FD /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		47CDEB5F2BC17D90008382FD /* NameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameService.swift; sourceTree = "<group>"; };
+		47CDEB612BC1807E008382FD /* NicknameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameResponse.swift; sourceTree = "<group>"; };
+		47D8CA942BC19081001B6D19 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +79,7 @@
 			files = (
 				47CDEB232BC12EAC008382FD /* RxCocoa in Frameworks */,
 				47CDEB2D2BC12EAC008382FD /* RxSwift-Dynamic in Frameworks */,
+				47CDEB5B2BC17D1D008382FD /* Moya in Frameworks */,
 				47CDEB252BC12EAC008382FD /* RxCocoa-Dynamic in Frameworks */,
 				47CDEB2B2BC12EAC008382FD /* RxSwift in Frameworks */,
 				47CDEB102BC109E1008382FD /* ReactorKit in Frameworks */,
@@ -106,6 +124,8 @@
 			children = (
 				47CDEB0A2BC108E4008382FD /* App */,
 				47CDEB3B2BC14906008382FD /* Common */,
+				47CDEB532BC17C2D008382FD /* Network */,
+				47CDEB4F2BC1651B008382FD /* Data */,
 				47CDEB372BC13E15008382FD /* Domain */,
 				47CDEB0B2BC108F0008382FD /* Presentation */,
 				47CDEB3D2BC14927008382FD /* Font */,
@@ -180,6 +200,7 @@
 		47CDEB3B2BC14906008382FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				47CDEB4C2BC156FB008382FD /* Component */,
 				47CDEB412BC1496E008382FD /* Extension */,
 			);
 			path = Common;
@@ -202,6 +223,67 @@
 				0A4F82552BC16CE400119796 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		47CDEB4C2BC156FB008382FD /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB4D2BC15708008382FD /* PaddingLabel.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		47CDEB4F2BC1651B008382FD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB502BC16526008382FD /* DTO */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		47CDEB502BC16526008382FD /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB512BC1653E008382FD /* QuestionRequest.swift */,
+				47CDEB612BC1807E008382FD /* NicknameResponse.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		47CDEB532BC17C2D008382FD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB542BC17C56008382FD /* API */,
+				47CDEB572BC17C88008382FD /* Extension */,
+				47CDEB5E2BC17D56008382FD /* Service */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		47CDEB542BC17C56008382FD /* API */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB552BC17C6D008382FD /* BaseAPI.swift */,
+				47D8CA942BC19081001B6D19 /* TokenManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		47CDEB572BC17C88008382FD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB582BC17CC0008382FD /* MoyaProvider+Extensions.swift */,
+				47CDEB5C2BC17D4B008382FD /* NetworkLogger.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		47CDEB5E2BC17D56008382FD /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB5F2BC17D90008382FD /* NameService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +314,7 @@
 				47CDEB282BC12EAC008382FD /* RxRelay-Dynamic */,
 				47CDEB2A2BC12EAC008382FD /* RxSwift */,
 				47CDEB2C2BC12EAC008382FD /* RxSwift-Dynamic */,
+				47CDEB5A2BC17D1D008382FD /* Moya */,
 			);
 			productName = "lock-or-lock";
 			productReference = 47CDEAF32BC107DC008382FD /* lock-or-lock.app */;
@@ -298,16 +381,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CDEB5D2BC17D4B008382FD /* NetworkLogger.swift in Sources */,
 				47CDEAFB2BC107DC008382FD /* HomeViewController.swift in Sources */,
 				47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */,
 				0A4F82562BC16CE400119796 /* UILabel+Extension.swift in Sources */,
 				47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */,
 				47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */,
 				47CDEB432BC14978008382FD /* UIFont.swift in Sources */,
+				47D8CA952BC19081001B6D19 /* TokenManager.swift in Sources */,
 				47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */,
+				47CDEB522BC1653E008382FD /* QuestionRequest.swift in Sources */,
+				47CDEB4E2BC15708008382FD /* PaddingLabel.swift in Sources */,
 				47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */,
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
 				0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */,
+				47CDEB592BC17CC0008382FD /* MoyaProvider+Extensions.swift in Sources */,
+				47CDEB602BC17D90008382FD /* NameService.swift in Sources */,
+				47CDEB622BC1807E008382FD /* NicknameResponse.swift in Sources */,
+				47CDEB562BC17C6D008382FD /* BaseAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +548,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,7 +575,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -627,6 +718,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 47CDEB0D2BC109D7008382FD /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = "RxSwift-Dynamic";
+		};
+		47CDEB5A2BC17D1D008382FD /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CDEB112BC109F8008382FD /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
