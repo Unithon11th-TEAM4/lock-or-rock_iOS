@@ -53,7 +53,7 @@ class RankingTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.backgroundColor = .black
+        self.backgroundColor = UIColor(named: "black")
         addSubViews()
         setLayout()
     }

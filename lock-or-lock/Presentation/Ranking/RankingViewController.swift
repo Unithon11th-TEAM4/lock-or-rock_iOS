@@ -87,6 +87,8 @@ class RankingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         attribute()
+        view.backgroundColor = UIColor(named: "black")
+        setTableView()
         addSubViews()
         setLayout()
         registerCell()

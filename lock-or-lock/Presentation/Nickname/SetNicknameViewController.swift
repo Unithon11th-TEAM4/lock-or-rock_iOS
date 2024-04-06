@@ -85,8 +85,7 @@ class SetNicknameViewController: UIViewController {
     
     private let numberOfCharacter = UILabel().then {
         $0.textColor = UIColor(named: "gray")
-        $0.font = .pretendardMedium(size: 14)
-        
+        $0.font = .waguri(size: 14)
     }
     
     private let borderLine = UIView().then {
@@ -182,7 +181,8 @@ class SetNicknameViewController: UIViewController {
         
         numberOfCharacter.snp.makeConstraints {
             $0.top.equalTo(containerView.snp.bottom).offset(40)
-            $0.trailing.equalToSuperview()
+            $0.leading.equalTo(nicknameTextField.snp.trailing).offset(10)
+            $0.trailing.equalTo(view.snp.trailing).offset(-10)
             $0.width.equalTo(78)
             $0.height.equalTo(18)
         }
