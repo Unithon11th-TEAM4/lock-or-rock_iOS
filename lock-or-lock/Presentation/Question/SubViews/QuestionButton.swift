@@ -48,9 +48,11 @@ final class QuestionButton: UIButton {
     private func configure() {
         if let image = question?.image {
             setImage(image, for: .normal)
+            setTitle(nil, for: .normal)
         }
         
         if let answer = question?.answer {
+            setImage(nil, for: .normal)
             setTitle(answer, for: .normal)
         }
     }
@@ -64,9 +66,10 @@ final class QuestionButton: UIButton {
     }
     
     
-    private func resetLayout() {
+    func resetLayout() {
         setTitle(nil, for: .normal)
         setImage(nil, for: .normal)
+        isSelected = false
     }
 }
 

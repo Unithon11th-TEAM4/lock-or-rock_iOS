@@ -1,0 +1,16 @@
+<svg width="75" height="95" viewBox="0 0 75 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="3" height="13" transform="matrix(-0.866025 0.5 0.5 0.866025 38.5 13)" fill="#ECAB59"/>
+<rect width="4.01883" height="11.0057" transform="matrix(-0.866025 0.5 0.5 0.866025 35.4971 43)" fill="url(#paint0_linear_76_993)"/>
+<rect width="2.77196" height="10.4778" transform="matrix(-0.924081 0.382196 0.382196 0.924081 3.14917 59.1299)" fill="white"/>
+<rect width="2.77196" height="6.64163" transform="matrix(-0.977918 -0.20899 -0.20899 0.977918 62.0989 80.5793)" fill="#F64A00"/>
+<rect width="4.01883" height="11.0057" transform="matrix(-0.997713 -0.0675858 -0.0675858 0.997713 75 41.2716)" fill="#772E0B"/>
+<rect width="5.7129" height="11.0057" transform="matrix(-0.993341 0.11521 0.11521 0.993341 52.6682 82.7332)" fill="#772E0B"/>
+<circle cx="2.5" cy="2.5" r="2.5" transform="matrix(-1 0 0 1 23 38)" fill="#D28244"/>
+<ellipse cx="67.5" cy="4.5" rx="5.5" ry="4.5" fill="#AE611D"/>
+<defs>
+<linearGradient id="paint0_linear_76_993" x1="2.00941" y1="0" x2="2.00941" y2="11.0057" gradientUnits="userSpaceOnUse">
+<stop stop-color="#BA7343"/>
+<stop offset="1" stop-color="#C2703C"/>
+</linearGradient>
+</defs>
+</svg>

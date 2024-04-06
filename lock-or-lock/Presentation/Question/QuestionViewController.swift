@@ -11,18 +11,20 @@ import RxCocoa
 import SnapKit
 import ReactorKit
 
+enum QuestionButtonType: Int {
+    case leftTop = 0
+    case rightTop = 1
+    case leftBottom = 2
+    case rightBottom = 3
+}
+
 class QuestionViewController: UIViewController {
     
     private let reactor: QuestionReactor
     var disposeBag = DisposeBag()
     
     // MARK: - Properties
-    private let questionNumLabel: UILabel = {
-        $0.text = "1/5"
-        $0.font = .boldSystemFont(ofSize: 14)
-        $0.textColor = .black
-        return $0
-    }(UILabel())
+    private let questionNumLabel = PaddingLabel(text: "1/5", font: UIFont.oAGothicExtraBold(size: 18), backgroundColor: .orange, padding: .medium)
     
     private let questionTitleLabel: UILabel = {
         $0.text = "다음 중 지지하는\n 정치사상을 고르세요."
@@ -60,6 +62,7 @@ class QuestionViewController: UIViewController {
         $0.layer.borderWidth = 3
         $0.layer.cornerRadius = 6
         $0.clipsToBounds = true
+        $0.isEnabled = false
         return $0
     }(UIButton())
     
@@ -78,6 +81,7 @@ class QuestionViewController: UIViewController {
         setView()
         addView()
         setLayout()
+        bind(reactor: reactor)
     }
     
     // MARK: - Set UI
@@ -150,10 +154,90 @@ extension QuestionViewController: View {
     }
 
     func bindAction(reactor: QuestionReactor) {
+        leftTopButton.rx.tap
+            .bind { [weak self] _ in
+                self?.reactor.action.onNext(.answerNumber(.leftTop))
+            }
+            .disposed(by: disposeBag)
         
+        rightTopButton.rx.tap
+            .bind { [weak self] _ in
+                self?.reactor.action.onNext(.answerNumber(.rightTop))
+            }
+            .disposed(by: disposeBag)
+        
+        leftBottomButton.rx.tap
+            .bind { [weak self] _ in
+                self?.reactor.action.onNext(.answerNumber(.leftBottom))
+            }
+            .disposed(by: disposeBag)
+        
+        rightBottomButton.rx.tap
+            .bind { [weak self] _ in
+                self?.reactor.action.onNext(.answerNumber(.rightBottom))
+            }
+            .disposed(by: disposeBag)
+        
+        nextButton.rx.tap
+            .bind { [weak self] _ in
+                if self?.reactor.currentState.currentQuestionNum == 5 {
+                    self?.reactor.postAnswer()
+                } else {
+                    self?.reactor.appendAnswer()
+                }
+            }
+            .disposed(by: disposeBag)
     }
 
     func bindState(reactor: QuestionReactor) {
+        reactor.state
+            .map { $0.currentAnswerNum }
+            .bind { [weak self] answerNum in
+                if let answerNum {
+                    switch answerNum {
+                    case .leftTop:
+                        self?.leftTopButton.isSelected = true
+                        self?.rightTopButton.isSelected = false
+                        self?.leftBottomButton.isSelected = false
+                        self?.rightBottomButton.isSelected = false
+                    case .rightTop:
+                        self?.leftTopButton.isSelected = false
+                        self?.rightTopButton.isSelected = true
+                        self?.leftBottomButton.isSelected = false
+                        self?.rightBottomButton.isSelected = false
+                    case .leftBottom:
+                        self?.leftTopButton.isSelected = false
+                        self?.rightTopButton.isSelected = false
+                        self?.leftBottomButton.isSelected = true
+                        self?.rightBottomButton.isSelected = false
+                    case .rightBottom:
+                        self?.leftTopButton.isSelected = false
+                        self?.rightTopButton.isSelected = false
+                        self?.leftBottomButton.isSelected = false
+                        self?.rightBottomButton.isSelected = true
+                    }
+                    self?.nextButton.isEnabled = true
+                    self?.nextButton.backgroundColor = .orange
+                } else {
+                    self?.leftTopButton.isSelected = false
+                    self?.rightTopButton.isSelected = false
+                    self?.leftBottomButton.isSelected = false
+                    self?.rightBottomButton.isSelected = false
+                    self?.nextButton.isEnabled = false
+                    self?.nextButton.backgroundColor = .gray
+                }
+            }
+            .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.currentQuestionNum }
+            .bind { [weak self] questionNum in
+                self?.questionNumLabel.text = "\(questionNum)/5"
+                
+                if questionNum == 5 {
+                    self?.nextButton.setTitle("결과보기", for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
