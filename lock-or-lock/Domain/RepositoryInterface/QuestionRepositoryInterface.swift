@@ -6,6 +6,6 @@
 //
 
 protocol QuestionRepositoryInterface {
-    func getQuestions() async throws -> QuestionResponse
+    func getQuestions() async throws -> SearchQuestionResponse
     func postQuestions(questionRequest: QuestionRequest) async throws -> ReportReponse
 }

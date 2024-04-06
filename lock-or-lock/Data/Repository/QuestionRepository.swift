@@ -11,7 +11,7 @@ import Moya
 struct QuestionRepository: QuestionRepositoryInterface {
     let provider = MoyaProvider<QuestionService>(plugins: [NetworkLogger()])
     
-    func getQuestions() async throws -> QuestionResponse {
+    func getQuestions() async throws -> SearchQuestionResponse {
         let result = await provider.request(.getQuestions)
         
         switch result {

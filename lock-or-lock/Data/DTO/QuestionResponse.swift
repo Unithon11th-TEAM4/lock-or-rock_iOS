@@ -8,6 +8,11 @@
 import Foundation
 
 // 퀴즈 조회
+struct SearchQuestionResponse: Codable {
+    let code: Int
+    let data: [QuestionResponse]
+}
+
 struct QuestionResponse: Codable {
     let questionId: Int
     let content: String
@@ -29,8 +34,8 @@ struct QuestionAnswerResponse: Codable {
     let content: String
     let url: String?
     
-    enum CodingKeys: CodingKey {
-        case answerId
+    enum CodingKeys: String, CodingKey {
+        case answerId = "answer_id"
         case content
         case url
     }

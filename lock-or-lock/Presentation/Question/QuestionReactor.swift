@@ -14,17 +14,20 @@ class QuestionReactor: Reactor {
     enum Action {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
+        case questionsResponse(QuestionResponse)
     }
     
     enum Mutation {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
+        case questionsResponse(QuestionResponse)
     }
     
     struct State {
         var currentAnswerNum: QuestionButtonType?
         var currentQuestionNum: Int = 1
         var answerList: [QuestionRequest] = []
+        var questionsResponse: [QuestionResponse] = []
     }
     
     var initialState: State
@@ -42,6 +45,8 @@ class QuestionReactor: Reactor {
             return .just(.answerNumber(answerNum))
         case .appendAnswer(let answer):
             return .just(.appendAnswer(answer))
+        case .questionsResponse(let questions):
+            return .just(.questionsResponse(questions))
         }
     }
     
@@ -59,6 +64,8 @@ class QuestionReactor: Reactor {
             }
             newState.currentQuestionNum += 1
             newState.currentAnswerNum = nil
+        case .questionsResponse(let questions):
+            newState.questionsResponse = questions
         }
         
         return newState
@@ -67,7 +74,10 @@ class QuestionReactor: Reactor {
     @MainActor
     func fetchQuestions() {
         Task {
-            let questions = try await questionUseCase.getQuestions()
+            let questionsDataResponse = try await questionUseCase.getQuestions()
+            
+            
+            
         }
     }
     
