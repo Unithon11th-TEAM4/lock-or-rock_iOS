@@ -85,7 +85,7 @@ class SetNicknameViewController: UIViewController {
     
     private let numberOfCharacter = UILabel().then {
         $0.textColor = UIColor(named: "gray")
-        $0.font = .oAGothicMedium(size: 14)
+        $0.font = .pretendardMedium(size: 14)
         
     }
     
@@ -96,16 +96,19 @@ class SetNicknameViewController: UIViewController {
     private let startButton = UIButton().then {
         $0.setTitle("시작하기", for: .normal)
         $0.titleLabel?.font = .waguri(size: 18)
-        $0.backgroundColor = UIColor(named: "primary")
-        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = UIColor(named: "gray3")
+        $0.setTitleColor(UIColor(named: "brightGray"), for: .normal)
         $0.layer.cornerRadius = 6
         $0.contentHorizontalAlignment = .center
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor(named: "gray2")?.cgColor
+        $0.isEnabled = false
         $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(named: "black")
         nicknameTextField.delegate = self
         addSubViews()
         setLayout()
@@ -179,8 +182,7 @@ class SetNicknameViewController: UIViewController {
         
         numberOfCharacter.snp.makeConstraints {
             $0.top.equalTo(containerView.snp.bottom).offset(40)
-            $0.leading.equalTo(nicknameTextField.snp.trailing).offset(10)
-            $0.trailing.equalTo(view.snp.trailing).offset(-10)
+            $0.trailing.equalToSuperview()
             $0.width.equalTo(78)
             $0.height.equalTo(18)
         }
@@ -251,6 +253,7 @@ class SetNicknameViewController: UIViewController {
 extension SetNicknameViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         updateCharacterCountLabel()
+        activateStartButton()
         
        if let char = string.cString(using: String.Encoding.utf8) {
               let isBackSpace = strcmp(char, "\\b")
@@ -262,7 +265,15 @@ extension SetNicknameViewController: UITextFieldDelegate {
         return true
     }
     
-    // 글자 수 업데이트 메서드
+    
+    func activateStartButton() {
+        startButton.isEnabled = true
+        startButton.backgroundColor = UIColor(named: "primary")
+        startButton.setTitleColor(UIColor(named: "white"), for: .normal)
+        startButton.layer.borderColor = UIColor(named: "black")?.cgColor
+    }
+    
+    // 글자 수 확인
     func updateCharacterCountLabel() {
         if let text = nicknameTextField.text {
             let characterCount = text.count
