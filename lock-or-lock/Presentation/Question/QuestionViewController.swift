@@ -82,6 +82,7 @@ class QuestionViewController: UIViewController {
         addView()
         setLayout()
         bind(reactor: reactor)
+        reactor.fetchQuestions()
     }
     
     // MARK: - Set UI

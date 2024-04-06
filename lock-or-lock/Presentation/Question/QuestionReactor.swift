@@ -28,9 +28,11 @@ class QuestionReactor: Reactor {
     }
     
     var initialState: State
+    let questionUseCase: QuestionUseCase
     
-    init() {
+    init(questionUseCase: QuestionUseCase) {
         self.initialState = State()
+        self.questionUseCase = questionUseCase
     }
     
     // MARK: - Mutate
@@ -62,6 +64,13 @@ class QuestionReactor: Reactor {
         return newState
     }
     
+    @MainActor
+    func fetchQuestions() {
+        Task {
+            let questions = try await questionUseCase.getQuestions()
+        }
+    }
+    
     func appendAnswer() {
         let currentQuestionNum = currentState.currentQuestionNum
         guard let currentAnswerNum = currentState.currentAnswerNum else { return }
@@ -72,13 +81,13 @@ class QuestionReactor: Reactor {
         
         switch currentAnswerNum {
         case .leftTop:
-            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 0)))
+            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 0)))
         case .rightTop:
-            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 1)))
+            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 1)))
         case .leftBottom:
-            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 2)))
+            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 2)))
         case .rightBottom:
-            action.onNext(.appendAnswer(.init(questionNum: currentQuestionNum, answerNum: 3)))
+            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 3)))
         }
     }
     
