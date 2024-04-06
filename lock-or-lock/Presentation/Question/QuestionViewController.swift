@@ -27,6 +27,7 @@ class QuestionViewController: UIViewController {
     private let questionTitleLabel: UILabel = {
         $0.text = "다음 중 지지하는\n 정치사상을 고르세요."
         $0.font = .boldSystemFont(ofSize: 20)
+        $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.textColor = .black
         return $0
@@ -53,7 +54,8 @@ class QuestionViewController: UIViewController {
     
     private let nextButton: UIButton = {
         $0.setTitle("다음질문", for: .normal)
-        $0.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        $0.backgroundColor = .lightGray
+        $0.titleLabel?.font = UIFont.waguri(size: 18)
         $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.borderWidth = 3
         $0.layer.cornerRadius = 6
