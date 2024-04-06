@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F82532BC1465200119796 /* SetNicknameViewController.swift */; };
 		47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEAF62BC107DC008382FD /* AppDelegate.swift */; };
 		47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEAF82BC107DC008382FD /* SceneDelegate.swift */; };
 		47CDEAFB2BC107DC008382FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEAFA2BC107DC008382FD /* HomeViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A4F82532BC1465200119796 /* SetNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewController.swift; sourceTree = "<group>"; };
 		47CDEAF32BC107DC008382FD /* lock-or-lock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lock-or-lock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47CDEAF62BC107DC008382FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47CDEAF82BC107DC008382FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4F82522BC1460600119796 /* Nickname */ = {
+			isa = PBXGroup;
+			children = (
+				0A4F82532BC1465200119796 /* SetNicknameViewController.swift */,
+			);
+			path = Nickname;
+			sourceTree = "<group>";
+		};
 		47CDEAEA2BC107DC008382FD = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +95,7 @@
 		47CDEB0B2BC108F0008382FD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0A4F82522BC1460600119796 /* Nickname */,
 				47CDEB0C2BC108F9008382FD /* Home */,
 			);
 			path = Presentation;
@@ -186,6 +197,7 @@
 				47CDEAFB2BC107DC008382FD /* HomeViewController.swift in Sources */,
 				47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */,
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
+				0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

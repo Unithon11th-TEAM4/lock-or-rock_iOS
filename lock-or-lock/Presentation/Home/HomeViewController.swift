@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     func configurationButton(_ button: UIButton, action: Selector) {
         button.backgroundColor = UIColor(named: "primary")
         button.setTitleColor(.white, for: .normal)
-        button.tintColor = .white
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 3
         button.layer.borderColor = UIColor(named: "black")?.cgColor
