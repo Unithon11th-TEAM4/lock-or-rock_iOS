@@ -45,14 +45,19 @@ final class QuestionButton: UIButton {
     }
     
     private func configure() {
-        if let imageURL = question?.url {
-            kf.setImage(with: URL(string: imageURL), for: .normal)
+        guard let question else { return }
+        
+        if question.url != Optional("") {
+            kf.setImage(with: URL(string: question.url ?? ""), for: .normal)
             setTitle(nil, for: .normal)
         } else {
-            if let answer = question?.content {
-                setImage(nil, for: .normal)
-                setTitle(answer, for: .normal)
+            if question.content.count > 4 {
+                titleLabel?.font = UIFont.waguri(size: 12)
+            } else {
+                titleLabel?.font = UIFont.waguri(size: 20)
             }
+            setImage(nil, for: .normal)
+            setTitle(question.content, for: .normal)
         }
     }
     

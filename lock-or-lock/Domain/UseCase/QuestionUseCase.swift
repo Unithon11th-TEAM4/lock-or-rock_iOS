@@ -9,7 +9,7 @@ import Foundation
 
 protocol QuestionUseCase {
     func getQuestions() async throws -> SearchQuestionResponse
-    func postQuestions(questionRequest: [QuestionRequest]) async throws -> ReportReponse
+    func postQuestions(questionRequest: QuestionListRequest) async throws -> ReportReponse
 }
 
 struct QuestionUseCaseImp: QuestionUseCase {
@@ -19,7 +19,7 @@ struct QuestionUseCaseImp: QuestionUseCase {
         try await questionRepository.getQuestions()
     }
     
-    func postQuestions(questionRequest: [QuestionRequest]) async throws -> ReportReponse {
+    func postQuestions(questionRequest: QuestionListRequest) async throws -> ReportReponse {
         try await questionRepository.postQuestions(questionRequest: questionRequest)
     }
 }

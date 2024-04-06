@@ -15,12 +15,14 @@ class QuestionReactor: Reactor {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
         case questionsResponse([QuestionResponse])
+        case issuccessedPost(ReportReponse)
     }
     
     enum Mutation {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
         case questionsResponse([QuestionResponse])
+        case issuccessedPost(ReportReponse)
     }
     
     struct State {
@@ -28,6 +30,7 @@ class QuestionReactor: Reactor {
         var currentQuestionNum: Int = 1
         var answerList: [QuestionRequest] = []
         var questionsResponse: [QuestionResponse] = []
+        var issuccessedPost: ReportReponse?
     }
     
     var initialState: State
@@ -47,6 +50,8 @@ class QuestionReactor: Reactor {
             return .just(.appendAnswer(answer))
         case .questionsResponse(let questions):
             return .just(.questionsResponse(questions))
+        case .issuccessedPost(let reportReponse):
+            return .just(.issuccessedPost(reportReponse))
         }
     }
     
@@ -66,6 +71,8 @@ class QuestionReactor: Reactor {
             newState.currentAnswerNum = nil
         case .questionsResponse(let questions):
             newState.questionsResponse = questions
+        case .issuccessedPost(let reportReponse):
+            newState.issuccessedPost = reportReponse
         }
         
         return newState
@@ -118,14 +125,11 @@ class QuestionReactor: Reactor {
         appendAnswer()
         
         Task {
-            do {
-                let currentQuestionRequest = currentState.answerList
-                let postQuestionresult = try await questionUseCase.postQuestions(questionRequest: currentQuestionRequest)
-                print(postQuestionresult)
-            } catch {
-                print("post error")
-            }
+            let currentQuestionRequest = self.currentState.answerList
+            let memberId = TokenManager.shared.getIntUserId()
+            let questionListRequest = QuestionListRequest(memberId: memberId, answers: currentQuestionRequest)
+            let postQuestionresult = try await questionUseCase.postQuestions(questionRequest: questionListRequest)
+            action.onNext(.issuccessedPost(postQuestionresult))
         }
-        
     }
 }

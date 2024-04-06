@@ -54,6 +54,14 @@ class QuestionViewController: UIViewController {
         return $0
     }(UIStackView())
     
+    private let toolTipLabel: UILabel = {
+        $0.text = "한 번 선택하면 되돌릴 수 없어요!"
+        $0.font = UIFont.oAGothicExtraBold(size: 14)
+        $0.textColor = .red
+        $0.isHidden = false
+        return $0
+    }(UILabel())
+    
     private let nextButton: UIButton = {
         $0.setTitle("다음질문", for: .normal)
         $0.backgroundColor = .lightGray
@@ -96,6 +104,7 @@ class QuestionViewController: UIViewController {
             questionTitleLabel,
             topStackView,
             bottomStackView,
+            toolTipLabel,
             nextButton
         ].forEach {
             view.addSubview($0)
@@ -124,6 +133,7 @@ class QuestionViewController: UIViewController {
         
         questionTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(questionNumLabel.snp.bottom).inset(-20)
+            make.leading.trailing.equalToSuperview().inset(40)
             make.centerX.equalToSuperview()
         }
         
@@ -137,6 +147,11 @@ class QuestionViewController: UIViewController {
             make.top.equalTo(topStackView.snp.bottom).inset(-15)
             make.leading.trailing.equalToSuperview().inset(10)
             make.height.equalTo(150)
+        }
+        
+        toolTipLabel.snp.makeConstraints { make in
+            make.top.equalTo(bottomStackView.snp.bottom).inset(-20)
+            make.centerX.equalToSuperview()
         }
         
         nextButton.snp.makeConstraints { make in
@@ -217,10 +232,12 @@ extension QuestionViewController: View {
                         self?.leftBottomButton.isSelected = false
                         self?.rightBottomButton.isSelected = true
                     }
+                    self?.toolTipLabel.isHidden = false
                     self?.nextButton.isEnabled = true
                     self?.nextButton.backgroundColor = .primary
                     self?.nextButton.layer.borderColor = UIColor.black.cgColor
                 } else {
+                    self?.toolTipLabel.isHidden = true
                     self?.leftTopButton.isSelected = false
                     self?.rightTopButton.isSelected = false
                     self?.leftBottomButton.isSelected = false
@@ -253,15 +270,13 @@ extension QuestionViewController: View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map { $0.questionsResponse }
-            .bind { [weak self] questions in
-                if !questions.isEmpty {
-                    self?.questionTitleLabel.text = questions[0].content
-                    self?.leftTopButton.question = questions[0].answers[0]
-                    self?.rightTopButton.question = questions[0].answers[1]
-                    self?.leftBottomButton.question = questions[0].answers[2]
-                    self?.rightBottomButton.question = questions[0].answers[3]
-                }
+            .map { $0.issuccessedPost }
+            .bind { [weak self] reportReponse in
+                guard let reportReponse else { return }
+                let reportReactor = ReportReactor(reportReponse: reportReponse)
+                let reportViewController = ReportViewController(reactor: reportReactor)
+                reportViewController.modalPresentationStyle = .overFullScreen
+                self?.present(reportViewController, animated: true)
             }
             .disposed(by: disposeBag)
     }

@@ -20,21 +20,22 @@ class ReportReactor: Reactor {
     }
     
     struct State {
-        
+        var reportReponse: ReportReponse
     }
     
     var initialState: State
     
     
-    init() {
-        self.initialState = State()
+    init(reportReponse: ReportReponse) {
+        self.initialState = State(reportReponse: reportReponse)
+        
         
     }
     
     // MARK: - Mutate
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        
+            
         }
     }
     
