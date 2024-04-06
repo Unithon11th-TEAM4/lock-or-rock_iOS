@@ -45,6 +45,11 @@
 		47CDEB602BC17D90008382FD /* NameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB5F2BC17D90008382FD /* NameService.swift */; };
 		47CDEB622BC1807E008382FD /* NicknameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB612BC1807E008382FD /* NicknameResponse.swift */; };
 		47D8CA952BC19081001B6D19 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CA942BC19081001B6D19 /* TokenManager.swift */; };
+		47D8CA992BC19D39001B6D19 /* QuestionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CA982BC19D39001B6D19 /* QuestionRepository.swift */; };
+		47D8CA9B2BC19D49001B6D19 /* QuestionRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CA9A2BC19D49001B6D19 /* QuestionRepositoryInterface.swift */; };
+		47D8CA9F2BC19EDF001B6D19 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CA9E2BC19EDF001B6D19 /* QuestionService.swift */; };
+		47D8CAA12BC19FE0001B6D19 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA02BC19FE0001B6D19 /* QuestionResponse.swift */; };
+		47D8CAA42BC1A74B001B6D19 /* QuestionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA32BC1A74B001B6D19 /* QuestionUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +81,11 @@
 		47CDEB5F2BC17D90008382FD /* NameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameService.swift; sourceTree = "<group>"; };
 		47CDEB612BC1807E008382FD /* NicknameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameResponse.swift; sourceTree = "<group>"; };
 		47D8CA942BC19081001B6D19 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		47D8CA982BC19D39001B6D19 /* QuestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRepository.swift; sourceTree = "<group>"; };
+		47D8CA9A2BC19D49001B6D19 /* QuestionRepositoryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRepositoryInterface.swift; sourceTree = "<group>"; };
+		47D8CA9E2BC19EDF001B6D19 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
+		47D8CAA02BC19FE0001B6D19 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
+		47D8CAA32BC1A74B001B6D19 /* QuestionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +210,8 @@
 		47CDEB372BC13E15008382FD /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				47D8CAA22BC1A740001B6D19 /* UseCase */,
+				47D8CA972BC19D0F001B6D19 /* RepositoryInterface */,
 				47CDEB382BC13E1D008382FD /* Entity */,
 			);
 			path = Domain;
@@ -253,6 +265,7 @@
 		47CDEB4F2BC1651B008382FD /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				47D8CA962BC19D04001B6D19 /* Repository */,
 				47CDEB502BC16526008382FD /* DTO */,
 			);
 			path = Data;
@@ -263,6 +276,7 @@
 			children = (
 				47CDEB512BC1653E008382FD /* QuestionRequest.swift */,
 				47CDEB612BC1807E008382FD /* NicknameResponse.swift */,
+				47D8CAA02BC19FE0001B6D19 /* QuestionResponse.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -299,8 +313,33 @@
 			isa = PBXGroup;
 			children = (
 				47CDEB5F2BC17D90008382FD /* NameService.swift */,
+				47D8CA9E2BC19EDF001B6D19 /* QuestionService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		47D8CA962BC19D04001B6D19 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				47D8CA982BC19D39001B6D19 /* QuestionRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		47D8CA972BC19D0F001B6D19 /* RepositoryInterface */ = {
+			isa = PBXGroup;
+			children = (
+				47D8CA9A2BC19D49001B6D19 /* QuestionRepositoryInterface.swift */,
+			);
+			path = RepositoryInterface;
+			sourceTree = "<group>";
+		};
+		47D8CAA22BC1A740001B6D19 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				47D8CAA32BC1A74B001B6D19 /* QuestionUseCase.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,17 +443,22 @@
 				47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */,
 				0A4F825B2BC183EF00119796 /* RankingTableViewCell.swift in Sources */,
 				0A4F82562BC16CE400119796 /* UILabel+Extension.swift in Sources */,
+				47D8CA9F2BC19EDF001B6D19 /* QuestionService.swift in Sources */,
 				47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */,
 				47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */,
 				47CDEB432BC14978008382FD /* UIFont.swift in Sources */,
 				47D8CA952BC19081001B6D19 /* TokenManager.swift in Sources */,
 				47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */,
+				47D8CA992BC19D39001B6D19 /* QuestionRepository.swift in Sources */,
+				47D8CA9B2BC19D49001B6D19 /* QuestionRepositoryInterface.swift in Sources */,
 				47CDEB522BC1653E008382FD /* QuestionRequest.swift in Sources */,
 				47CDEB4E2BC15708008382FD /* PaddingLabel.swift in Sources */,
 				47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */,
+				47D8CAA42BC1A74B001B6D19 /* QuestionUseCase.swift in Sources */,
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
 				0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */,
 				0A4F82592BC17B1900119796 /* RankingViewController.swift in Sources */,
+				47D8CAA12BC19FE0001B6D19 /* QuestionResponse.swift in Sources */,
 				47CDEB592BC17CC0008382FD /* MoyaProvider+Extensions.swift in Sources */,
 				47CDEB602BC17D90008382FD /* NameService.swift in Sources */,
 				47CDEB622BC1807E008382FD /* NicknameResponse.swift in Sources */,
