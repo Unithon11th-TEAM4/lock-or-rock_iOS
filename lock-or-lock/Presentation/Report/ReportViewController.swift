@@ -27,7 +27,7 @@ class ReportViewController: UIViewController {
     }(UILabel())
     
     private let reportView = ReportView()
-    private let likeButton = LikeButton()
+    private let likeView = LikeView()
     
     private let instagramButton: UIButton = {
         $0.setTitle("인스타그램으로 공유하기", for: .normal)
@@ -70,13 +70,14 @@ class ReportViewController: UIViewController {
     // MARK: - Set UI
     private func setView() {
         view.backgroundColor = UIColor.dark
+        likeView.delegate = self
     }
     
     private func addView() {
         [
            nameTitleLabel,
            reportView,
-           likeButton,
+           likeView,
            instagramButton,
            rankingButton
         ].forEach {
@@ -97,10 +98,9 @@ class ReportViewController: UIViewController {
             make.height.equalTo(380)
         }
         
-        likeButton.snp.makeConstraints { make in
+        likeView.snp.makeConstraints { make in
             make.top.equalTo(reportView.snp.bottom).inset(-16)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(110)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(30)
         }
         
@@ -154,13 +154,6 @@ extension ReportViewController: View {
                 }
             }
             .disposed(by: disposeBag)
-        
-        likeButton.rx.tap
-            .observe(on: MainScheduler.instance)
-            .bind {
-                
-            }
-            .disposed(by: disposeBag)
     }
     
     func bindState(reactor: ReportReactor) {
@@ -171,5 +164,21 @@ extension ReportViewController: View {
                 self?.reportView.reportReponse = reportReponse
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.likeCount }
+            .bind { [weak self] likeCount in
+                guard let likeCount else { return }
+                self?.likeView.likeNumberLabel.text = "\(likeCount)"
+            }
+            .disposed(by: disposeBag)
     }
 }
+
+// MARK: - 하트버튼 Tap
+extension ReportViewController: LikeViewDelegate {
+    func likeButtonTapped() {
+        self.reactor.likePost()
+    }
+}
+

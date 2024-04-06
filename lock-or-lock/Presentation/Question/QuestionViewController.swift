@@ -273,7 +273,9 @@ extension QuestionViewController: View {
             .map { $0.issuccessedPost }
             .bind { [weak self] reportReponse in
                 guard let reportReponse else { return }
-                let reportReactor = ReportReactor(reportReponse: reportReponse)
+                let rankingRepository = RankingRepository()
+                let rankingUseCase = RankingUseCaseImp(rankingRepository: rankingRepository)
+                let reportReactor = ReportReactor(reportReponse: reportReponse, rankingUseCase: rankingUseCase)
                 let reportViewController = ReportViewController(reactor: reportReactor)
                 reportViewController.modalPresentationStyle = .overFullScreen
                 self?.present(reportViewController, animated: true)

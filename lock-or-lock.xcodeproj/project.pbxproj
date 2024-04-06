@@ -11,12 +11,11 @@
 		0A4F82562BC16CE400119796 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F82552BC16CE400119796 /* UILabel+Extension.swift */; };
 		0A4F82592BC17B1900119796 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F82582BC17B1900119796 /* RankingViewController.swift */; };
 		0A4F825B2BC183EF00119796 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F825A2BC183EF00119796 /* RankingTableViewCell.swift */; };
-		0A4F825D2BC185C900119796 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F825C2BC185C900119796 /* Pretendard-Medium.otf */; };
-		474729672BC1D05900052F94 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 474729662BC1D05900052F94 /* SnapKit */; };
-		0A99B5DB2BC1E1D9007E18C9 /* RankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A99B5DA2BC1E1D9007E18C9 /* RankingService.swift */; };
-		0A99B5DD2BC1E4BD007E18C9 /* RankingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A99B5DC2BC1E4BD007E18C9 /* RankingResponse.swift */; };
 		0A4F82602BC1AB4000119796 /* ProposeQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F825F2BC1AB4000119796 /* ProposeQuestionViewController.swift */; };
 		0A4F82622BC1C15400119796 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F82612BC1C15400119796 /* OptionTableViewCell.swift */; };
+		0A99B5DB2BC1E1D9007E18C9 /* RankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A99B5DA2BC1E1D9007E18C9 /* RankingService.swift */; };
+		0A99B5DD2BC1E4BD007E18C9 /* RankingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A99B5DC2BC1E4BD007E18C9 /* RankingResponse.swift */; };
+		474729672BC1D05900052F94 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 474729662BC1D05900052F94 /* SnapKit */; };
 		47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEAF62BC107DC008382FD /* AppDelegate.swift */; };
 		47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEAF82BC107DC008382FD /* SceneDelegate.swift */; };
 		47CDEAFB2BC107DC008382FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEAFA2BC107DC008382FD /* HomeViewController.swift */; };
@@ -50,7 +49,7 @@
 		47D8CAA72BC1AC9C001B6D19 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA62BC1AC9C001B6D19 /* ReportViewController.swift */; };
 		47D8CAA92BC1ACE2001B6D19 /* ReportReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA82BC1ACE2001B6D19 /* ReportReactor.swift */; };
 		47D8CAAC2BC1B0B9001B6D19 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAAB2BC1B0B9001B6D19 /* ReportView.swift */; };
-		47D8CAB02BC1C310001B6D19 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAAF2BC1C310001B6D19 /* LikeButton.swift */; };
+		47D8CAB02BC1C310001B6D19 /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAAF2BC1C310001B6D19 /* LikeView.swift */; };
 		47F4C2DC2BC1D21F0022DF0B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 47F4C2DB2BC1D21F0022DF0B /* RxCocoa */; };
 		47F4C2DE2BC1D21F0022DF0B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 47F4C2DD2BC1D21F0022DF0B /* RxRelay */; };
 		47F4C2E02BC1D21F0022DF0B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 47F4C2DF2BC1D21F0022DF0B /* RxSwift */; };
@@ -58,6 +57,9 @@
 		47F4C2E52BC1D3280022DF0B /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = 47F4C2E42BC1D3280022DF0B /* FacebookGamingServices */; };
 		47F4C2E72BC1D3280022DF0B /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 47F4C2E62BC1D3280022DF0B /* FacebookLogin */; };
 		47F4C2E92BC1D3280022DF0B /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 47F4C2E82BC1D3280022DF0B /* FacebookShare */; };
+		47F4C2EB2BC207850022DF0B /* RankingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F4C2EA2BC207850022DF0B /* RankingUseCase.swift */; };
+		47F4C2ED2BC208070022DF0B /* RankingRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F4C2EC2BC208070022DF0B /* RankingRepositoryInterface.swift */; };
+		47F4C2EF2BC2083C0022DF0B /* RankingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F4C2EE2BC2083C0022DF0B /* RankingRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,10 +80,10 @@
 		0A4F82552BC16CE400119796 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		0A4F82582BC17B1900119796 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		0A4F825A2BC183EF00119796 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
-		0A99B5DA2BC1E1D9007E18C9 /* RankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingService.swift; sourceTree = "<group>"; };
-		0A99B5DC2BC1E4BD007E18C9 /* RankingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingResponse.swift; sourceTree = "<group>"; };
 		0A4F825F2BC1AB4000119796 /* ProposeQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposeQuestionViewController.swift; sourceTree = "<group>"; };
 		0A4F82612BC1C15400119796 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
+		0A99B5DA2BC1E1D9007E18C9 /* RankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingService.swift; sourceTree = "<group>"; };
+		0A99B5DC2BC1E4BD007E18C9 /* RankingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingResponse.swift; sourceTree = "<group>"; };
 		47CDEAF32BC107DC008382FD /* lock-or-lock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lock-or-lock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47CDEAF62BC107DC008382FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47CDEAF82BC107DC008382FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,7 +115,10 @@
 		47D8CAA62BC1AC9C001B6D19 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		47D8CAA82BC1ACE2001B6D19 /* ReportReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReactor.swift; sourceTree = "<group>"; };
 		47D8CAAB2BC1B0B9001B6D19 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		47D8CAAF2BC1C310001B6D19 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		47D8CAAF2BC1C310001B6D19 /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
+		47F4C2EA2BC207850022DF0B /* RankingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUseCase.swift; sourceTree = "<group>"; };
+		47F4C2EC2BC208070022DF0B /* RankingRepositoryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRepositoryInterface.swift; sourceTree = "<group>"; };
+		47F4C2EE2BC2083C0022DF0B /* RankingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				47D8CA982BC19D39001B6D19 /* QuestionRepository.swift */,
+				47F4C2EE2BC2083C0022DF0B /* RankingRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				47D8CA9A2BC19D49001B6D19 /* QuestionRepositoryInterface.swift */,
+				47F4C2EC2BC208070022DF0B /* RankingRepositoryInterface.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -378,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				47D8CAA32BC1A74B001B6D19 /* QuestionUseCase.swift */,
+				47F4C2EA2BC207850022DF0B /* RankingUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -396,7 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				47D8CAAB2BC1B0B9001B6D19 /* ReportView.swift */,
-				47D8CAAF2BC1C310001B6D19 /* LikeButton.swift */,
+				47D8CAAF2BC1C310001B6D19 /* LikeView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -501,11 +509,13 @@
 				47CDEB5D2BC17D4B008382FD /* NetworkLogger.swift in Sources */,
 				47CDEAFB2BC107DC008382FD /* HomeViewController.swift in Sources */,
 				47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */,
+				47F4C2ED2BC208070022DF0B /* RankingRepositoryInterface.swift in Sources */,
 				0A4F825B2BC183EF00119796 /* RankingTableViewCell.swift in Sources */,
-				47D8CAB02BC1C310001B6D19 /* LikeButton.swift in Sources */,
+				47D8CAB02BC1C310001B6D19 /* LikeView.swift in Sources */,
 				0A4F82562BC16CE400119796 /* UILabel+Extension.swift in Sources */,
 				47D8CA9F2BC19EDF001B6D19 /* QuestionService.swift in Sources */,
 				47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */,
+				47F4C2EB2BC207850022DF0B /* RankingUseCase.swift in Sources */,
 				47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */,
 				0A99B5DD2BC1E4BD007E18C9 /* RankingResponse.swift in Sources */,
 				47CDEB432BC14978008382FD /* UIFont.swift in Sources */,
@@ -524,6 +534,7 @@
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
 				0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */,
 				0A4F82592BC17B1900119796 /* RankingViewController.swift in Sources */,
+				47F4C2EF2BC2083C0022DF0B /* RankingRepository.swift in Sources */,
 				47D8CAA12BC19FE0001B6D19 /* QuestionResponse.swift in Sources */,
 				47CDEB592BC17CC0008382FD /* MoyaProvider+Extensions.swift in Sources */,
 				0A4F82622BC1C15400119796 /* OptionTableViewCell.swift in Sources */,
@@ -674,7 +685,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F6SZ5LV55B;
 				DEVELOPMENT_TEAM = 7LVZCMHQG6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "lock-or-lock/Info.plist";
@@ -703,7 +713,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F6SZ5LV55B;
 				DEVELOPMENT_TEAM = 7LVZCMHQG6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "lock-or-lock/Info.plist";

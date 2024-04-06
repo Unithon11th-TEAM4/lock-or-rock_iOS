@@ -36,8 +36,6 @@ final class ReportView: UIView {
         return $0
     }(UILabel())
     
-    let likeButton = LikeButton()
-    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,6 +88,9 @@ final class ReportView: UIView {
         guard let reportReponse else { return }
         nicknameLabel.text = "\(reportReponse.data.nickname) 님!"
         
+        if keywordStackView.arrangedSubviews.count > 2 {
+            return
+        }
         for memberPersonality in reportReponse.data.memberPersonality {
             let keywordLabel: UILabel = {
                     let attributedString = NSMutableAttributedString(string: "\(memberPersonality.content) \(memberPersonality.verb)")

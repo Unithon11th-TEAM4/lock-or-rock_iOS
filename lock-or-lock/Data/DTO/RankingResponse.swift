@@ -29,3 +29,16 @@ struct Leaderboard: Codable {
         case likeCount = "like_count"
     }
 }
+
+struct LikeCountResponse: Codable {
+    let code: Int
+    let data: LikeCountDataResponse
+}
+
+struct LikeCountDataResponse: Codable {
+    let likeCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case likeCount = "like_count"
+    }
+}

@@ -18,9 +18,9 @@ extension RankingService: TargetType {
     
     public var path: String {
         switch self {
-        case .getRanking(memberId: let member_id):
+        case .getRanking:
             return "/leaderboards"
-        case .like(memberId: let memberId):
+        case .like:
             return "/leaderboard/like"
         }
     }
@@ -38,8 +38,11 @@ extension RankingService: TargetType {
         switch self {
         case .getRanking(let memberId):
             return .requestParameters(parameters: ["member_id": memberId], encoding: URLEncoding.queryString)
-        case .like:
-            return .requestPlain
+        case .like(let memberId):
+            let param: [String: Any] = [
+                "member_id": memberId
+            ]
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }
     }
     

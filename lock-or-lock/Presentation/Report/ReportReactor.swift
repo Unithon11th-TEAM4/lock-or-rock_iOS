@@ -12,22 +12,24 @@ import ReactorKit
 class ReportReactor: Reactor {
     
     enum Action {
-        
+        case likeCount(Int)
     }
     
     enum Mutation {
-        
+        case likeCount(Int)
     }
     
     struct State {
         var reportReponse: ReportReponse
+        var likeCount: Int?
     }
     
     var initialState: State
+    let rankingUseCase: RankingUseCase
     
-    init(reportReponse: ReportReponse) {
+    init(reportReponse: ReportReponse, rankingUseCase: RankingUseCase) {
         self.initialState = State(reportReponse: reportReponse)
-        
+        self.rankingUseCase = rankingUseCase
         
     }
     
@@ -35,6 +37,8 @@ class ReportReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
             
+        case .likeCount(let likeCount):
+            return .just(.likeCount(likeCount))
         }
     }
     
@@ -44,9 +48,19 @@ class ReportReactor: Reactor {
         
         switch mutation {
         
+        case .likeCount(let likeCount):
+            newState.likeCount = likeCount
         }
         
         return newState
     }
     
+    @MainActor
+    func likePost() {
+        Task {
+            let memberId = TokenManager.shared.getIntUserId()
+            let resultLike = try await self.rankingUseCase.postLike(memberId: memberId)
+            action.onNext(.likeCount(resultLike.data.likeCount))
+        }
+    }
 }
