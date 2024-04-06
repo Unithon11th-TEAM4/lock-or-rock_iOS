@@ -11,13 +11,14 @@ enum LockOrLockFont: CaseIterable {
     case waguri
     case oAGothicMedium
     case oAGothicExtraBold
+    case pretendardMedium
     
     var fontName: String {
         switch self {
         case .waguri: return "WAGURI"
         case .oAGothicMedium: return "OAGothic-Medium"
         case .oAGothicExtraBold: return "OAGothic-ExtraBold"
-        
+        case .pretendardMedium: return "Pretendard-Medium"
         }
     }
 }
@@ -37,5 +38,9 @@ extension UIFont {
     
     static func oAGothicExtraBold(size: CGFloat) -> UIFont {
         return UIFont(name: LockOrLockFont.oAGothicExtraBold.fontName, size: size) ?? UIFont.boldSystemFont(ofSize: size)
+    }
+    
+    static func pretendardMedium(size: CGFloat) -> UIFont {
+        return UIFont(name: LockOrLockFont.pretendardMedium.fontName, size: size) ?? UIFont.boldSystemFont(ofSize: size)
     }
 }
