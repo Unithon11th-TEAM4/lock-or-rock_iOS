@@ -12,15 +12,15 @@ import ReactorKit
 class QuestionReactor: Reactor {
     
     enum Action {
-        
+        case answerNumber(QuestionButtonType)
     }
     
     enum Mutation {
-        
+        case answerNumber(QuestionButtonType)
     }
     
     struct State {
-        
+        var currentAnswerNum: QuestionButtonType?
     }
     
     var initialState: State
@@ -32,7 +32,8 @@ class QuestionReactor: Reactor {
     // MARK: - Mutate
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        
+        case .answerNumber(let answer):
+            return .just(.answerNumber(answer))
         }
     }
     
@@ -41,7 +42,8 @@ class QuestionReactor: Reactor {
         var newState = state
         
         switch mutation {
-        
+        case .answerNumber(let answer):
+            newState.currentAnswerNum = answer
         }
         
         return newState
