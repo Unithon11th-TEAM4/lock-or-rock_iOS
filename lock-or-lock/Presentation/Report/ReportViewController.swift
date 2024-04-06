@@ -127,6 +127,7 @@ extension ReportViewController: View {
 
     func bindAction(reactor: ReportReactor) {
         instagramButton.rx.tap
+            .observe(on: MainScheduler.instance)
             .bind {
                 if let storiesUrl = URL(string: "instagram-stories://share?source_application=" +
                                         "921665266122530") {
@@ -151,6 +152,13 @@ extension ReportViewController: View {
                         print("User doesn't have instagram on their device.")
                     }
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        likeButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .bind {
+                
             }
             .disposed(by: disposeBag)
     }

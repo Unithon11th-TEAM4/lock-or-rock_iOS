@@ -25,7 +25,6 @@ class ReportReactor: Reactor {
     
     var initialState: State
     
-    
     init(reportReponse: ReportReponse) {
         self.initialState = State(reportReponse: reportReponse)
         

@@ -24,7 +24,7 @@ final class LikeButton: UIButton {
     }(UIImageView())
     
     private let likeNumberLabel: UILabel = {
-        $0.text = "0"
+        $0.text = ""
         $0.font = .oAGothicMedium(size: 18)
         $0.textColor = .pink
         return $0

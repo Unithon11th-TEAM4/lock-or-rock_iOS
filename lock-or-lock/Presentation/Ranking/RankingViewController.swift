@@ -6,8 +6,17 @@
 //
 
 import UIKit
+import SnapKit
+import Moya
 
 class RankingViewController: UIViewController {
+    
+    let provider = MoyaProvider<RankingService>(plugins: [NetworkLogger()])
+    var responseData: [Leaderboard] = [] {
+        didSet {
+            rankingTableView.reloadData()
+        }
+    }
     
     private let titleView = UIView().then {
         $0.backgroundColor = UIColor(named: "primary")
@@ -36,9 +45,38 @@ class RankingViewController: UIViewController {
         $0.contentMode = .scaleToFill
     }
     
-    private let rankingTableView = UITableView().then {
-        $0.isScrollEnabled = false
+    private var tableHeaderView = UIView().then {
+        $0.backgroundColor = UIColor(named: "primary")
+        $0.layer.cornerRadius = 12
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor.white.cgColor
+        $0.clipsToBounds = true
     }
+    
+    private let myRankNumber = UILabel().then {
+        $0.text = "5"
+        $0.font = .waguri(size: 20)
+        $0.textColor = .white
+    }
+    
+    private let myName = UILabel().then {
+        $0.text = "평화호소인"
+        $0.font = .oAGothicMedium(size: 18)
+        $0.textColor = .white
+    }
+    
+    private let myHeartImage = UIImageView().then {
+        $0.image = UIImage(named: "myHeart")
+        $0.contentMode = .scaleToFill
+    }
+    
+    private let myHeartNumber = UILabel().then {
+        $0.text = "1"
+        $0.font = .waguri(size: 18)
+        $0.textColor = .white
+    }
+    
+    private let rankingTableView = UITableView()
     
     private let homeButton = UIButton().then {
         $0.setTitle("홈으로 가기", for: .normal)
@@ -52,19 +90,51 @@ class RankingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTableView()
+        attribute()
+        view.backgroundColor = UIColor(named: "black")
         addSubViews()
         setLayout()
         registerCell()
+        getRanking()
     }
     
-    private func setTableView() {
+    // MARK: API
+    private func getRanking() {
+        let memberId = TokenManager.shared.getIntUserId()
+        
+        provider.request(.getRanking(memberId: memberId)) { [weak self] (result) in
+            switch result {
+            case let .success(response):
+                guard let result = try? response.map(RankingResponse.self) else { return }
+                self?.setData(rankingResponse: result.data)
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func setData(rankingResponse: RankingDto) {
+        // 나의 랭킹 정보
+        myRankNumber.text = String(rankingResponse.leaderboards[0].rankNo)
+        myName.text = rankingResponse.leaderboards[0].nickname
+        myHeartNumber.text = String(rankingResponse.leaderboards[0].likeCount)
+        
+        // 전체 랭킹 정보
+        for leaderboard in rankingResponse.leaderboards {
+            if leaderboard.rankNo != 0 {
+                responseData.append(leaderboard)
+            }
+        }
+    }
+    
+    private func attribute() {
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
     }
     
     private func addSubViews() {
-        [titleView, background1, mainImage, background2, rankingTableView, homeButton].forEach { view.addSubview($0) }
+        [titleView, background1, mainImage, background2, tableHeaderView, rankingTableView, homeButton].forEach { view.addSubview($0) }
+        [myRankNumber, myName, myHeartImage, myHeartNumber].forEach {         tableHeaderView.addSubview($0) }
         titleView.addSubview(titleLabel)
     }
     
@@ -99,20 +169,46 @@ class RankingViewController: UIViewController {
             $0.width.equalTo(59.43)
         }
         
-        rankingTableView.snp.makeConstraints {
+        tableHeaderView.snp.makeConstraints {
             $0.top.equalTo(mainImage.snp.bottom).offset(30)
             $0.leading.equalTo(view.snp.leading).offset(10)
-            $0.height.equalTo(282)
+            $0.height.equalTo(50)
             $0.centerX.equalToSuperview()
         }
         
+        rankingTableView.snp.makeConstraints {
+            $0.top.equalTo(tableHeaderView.snp.bottom).offset(10)
+            $0.leading.equalTo(view.snp.leading).offset(10)
+            $0.height.equalTo(290)
+            $0.centerX.equalToSuperview()
+        }
+        
+        myRankNumber.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(20)
+            $0.centerY.equalToSuperview()
+        }
+        
+        myName.snp.makeConstraints {
+            $0.leading.equalTo(myRankNumber.snp.trailing).offset(41)
+            $0.centerY.equalToSuperview()
+        }
+        
+        myHeartImage.snp.makeConstraints {
+            $0.trailing.equalTo(myHeartNumber.snp.leading).offset(-5)
+            $0.centerY.equalToSuperview()
+        }
+        
+        myHeartNumber.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.centerY.equalToSuperview()
+        }
+        
         homeButton.snp.makeConstraints {
-            $0.top.equalTo(rankingTableView.snp.bottom).offset(80)
+            $0.top.equalTo(rankingTableView.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
             $0.leading.equalTo(view.snp.leading).offset(15)
             $0.height.equalTo(64)
         }
-        
     }
     
     private func registerCell() {
@@ -128,20 +224,28 @@ class RankingViewController: UIViewController {
 }
 
 extension RankingViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return responseData.count-1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RankingTableViewCell.identifier, for: indexPath) as! RankingTableViewCell
         
         cell.selectionStyle = .none
-//        cell.configureCell(rank: rankList[indexPath.row])
+        cell.configureCell(at: indexPath)
+        
+        // 응답 데이터
+        if !responseData.isEmpty {
+            let data = responseData[indexPath.row]
+            cell.userName.text = data.nickname
+            cell.heartNumber.text = String(data.likeCount)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 58
+        return 55
     }
 }

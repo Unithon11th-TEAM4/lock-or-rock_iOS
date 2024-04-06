@@ -24,7 +24,7 @@ final class ReportView: UIView {
     
     var keywordStackView: UIStackView = {
         $0.axis = .vertical
-        $0.spacing = 15
+        $0.spacing = 20
         $0.alignment = .center
         return $0
     }(UIStackView())
@@ -76,7 +76,7 @@ final class ReportView: UIView {
         }
         
         keywordStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(60)
+            make.top.equalToSuperview().inset(75)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         

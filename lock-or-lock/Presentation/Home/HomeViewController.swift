@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     
     private let welcomeLaebl = UILabel().then {
         $0.text = "환영합니다!"
-        $0.font = .waguri(size: 27)
+        $0.font = .waguri(size: 26)
         $0.textColor = .white
     }
     

@@ -14,10 +14,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let questionRepository = QuestionRepository()
-        let questionUseCase = QuestionUseCaseImp(questionRepository: questionRepository)
-        let questionReactor = QuestionReactor(questionUseCase: questionUseCase)
-        let navigationController = UINavigationController(rootViewController: QuestionViewController(reactor: questionReactor))
+//        let questionRepository = QuestionRepository()
+//        let questionUseCase = QuestionUseCaseImp(questionRepository: questionRepository)
+//        let questionReactor = QuestionReactor(questionUseCase: questionUseCase)
+//        let navigationController = UINavigationController(rootViewController: QuestionViewController(reactor: questionReactor))
+        let navigationController = UINavigationController(rootViewController: RankingViewController())
         window?.rootViewController = navigationController
         // 분기 처리
 //        if TokenManager.shared.getUserId() != nil {
