@@ -50,6 +50,10 @@
 		47D8CA9F2BC19EDF001B6D19 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CA9E2BC19EDF001B6D19 /* QuestionService.swift */; };
 		47D8CAA12BC19FE0001B6D19 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA02BC19FE0001B6D19 /* QuestionResponse.swift */; };
 		47D8CAA42BC1A74B001B6D19 /* QuestionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA32BC1A74B001B6D19 /* QuestionUseCase.swift */; };
+		47D8CAA72BC1AC9C001B6D19 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA62BC1AC9C001B6D19 /* ReportViewController.swift */; };
+		47D8CAA92BC1ACE2001B6D19 /* ReportReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAA82BC1ACE2001B6D19 /* ReportReactor.swift */; };
+		47D8CAAC2BC1B0B9001B6D19 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAAB2BC1B0B9001B6D19 /* ReportView.swift */; };
+		47D8CAB02BC1C310001B6D19 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CAAF2BC1C310001B6D19 /* LikeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +90,10 @@
 		47D8CA9E2BC19EDF001B6D19 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
 		47D8CAA02BC19FE0001B6D19 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
 		47D8CAA32BC1A74B001B6D19 /* QuestionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionUseCase.swift; sourceTree = "<group>"; };
+		47D8CAA62BC1AC9C001B6D19 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		47D8CAA82BC1ACE2001B6D19 /* ReportReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReactor.swift; sourceTree = "<group>"; };
+		47D8CAAB2BC1B0B9001B6D19 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		47D8CAAF2BC1C310001B6D19 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +185,7 @@
 				0A4F82522BC1460600119796 /* Nickname */,
 				47CDEB0C2BC108F9008382FD /* Home */,
 				47CDEB1D2BC12CDC008382FD /* Question */,
+				47D8CAA52BC1AC88001B6D19 /* Report */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -342,6 +351,25 @@
 			path = UseCase;
 			sourceTree = "<group>";
 		};
+		47D8CAA52BC1AC88001B6D19 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				47D8CAAA2BC1B0AE001B6D19 /* SubViews */,
+				47D8CAA62BC1AC9C001B6D19 /* ReportViewController.swift */,
+				47D8CAA82BC1ACE2001B6D19 /* ReportReactor.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		47D8CAAA2BC1B0AE001B6D19 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				47D8CAAB2BC1B0B9001B6D19 /* ReportView.swift */,
+				47D8CAAF2BC1C310001B6D19 /* LikeButton.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -442,6 +470,7 @@
 				47CDEAFB2BC107DC008382FD /* HomeViewController.swift in Sources */,
 				47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */,
 				0A4F825B2BC183EF00119796 /* RankingTableViewCell.swift in Sources */,
+				47D8CAB02BC1C310001B6D19 /* LikeButton.swift in Sources */,
 				0A4F82562BC16CE400119796 /* UILabel+Extension.swift in Sources */,
 				47D8CA9F2BC19EDF001B6D19 /* QuestionService.swift in Sources */,
 				47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */,
@@ -451,9 +480,12 @@
 				47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */,
 				47D8CA992BC19D39001B6D19 /* QuestionRepository.swift in Sources */,
 				47D8CA9B2BC19D49001B6D19 /* QuestionRepositoryInterface.swift in Sources */,
+				47D8CAA92BC1ACE2001B6D19 /* ReportReactor.swift in Sources */,
 				47CDEB522BC1653E008382FD /* QuestionRequest.swift in Sources */,
+				47D8CAA72BC1AC9C001B6D19 /* ReportViewController.swift in Sources */,
 				47CDEB4E2BC15708008382FD /* PaddingLabel.swift in Sources */,
 				47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */,
+				47D8CAAC2BC1B0B9001B6D19 /* ReportView.swift in Sources */,
 				47D8CAA42BC1A74B001B6D19 /* QuestionUseCase.swift in Sources */,
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
 				0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */,
