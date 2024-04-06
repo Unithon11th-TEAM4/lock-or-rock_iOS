@@ -41,7 +41,7 @@ class RankingViewController: UIViewController {
         $0.contentMode = .scaleToFill
     }
     
-    private var tableHeaderView = UIView(frame: CGRect(x: 15, y: 293, width: 345, height: 50)).then {
+    private var tableHeaderView = UIView().then {
         $0.backgroundColor = UIColor(named: "primary")
         $0.layer.cornerRadius = 12
         $0.layer.borderWidth = 3
@@ -125,11 +125,10 @@ class RankingViewController: UIViewController {
     private func attribute() {
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
-        rankingTableView.tableHeaderView = tableHeaderView
     }
     
     private func addSubViews() {
-        [titleView, background1, mainImage, background2, rankingTableView, homeButton].forEach { view.addSubview($0) }
+        [titleView, background1, mainImage, background2, tableHeaderView, rankingTableView, homeButton].forEach { view.addSubview($0) }
         [myRankNumber, myName, myHeartImage, myHeartNumber].forEach {         tableHeaderView.addSubview($0) }
         titleView.addSubview(titleLabel)
     }
@@ -165,10 +164,17 @@ class RankingViewController: UIViewController {
             $0.width.equalTo(59.43)
         }
         
-        rankingTableView.snp.makeConstraints {
+        tableHeaderView.snp.makeConstraints {
             $0.top.equalTo(mainImage.snp.bottom).offset(30)
             $0.leading.equalTo(view.snp.leading).offset(10)
-            $0.height.equalTo(340)
+            $0.height.equalTo(50)
+            $0.centerX.equalToSuperview()
+        }
+        
+        rankingTableView.snp.makeConstraints {
+            $0.top.equalTo(tableHeaderView.snp.bottom).offset(10)
+            $0.leading.equalTo(view.snp.leading).offset(10)
+            $0.height.equalTo(290)
             $0.centerX.equalToSuperview()
         }
         
@@ -213,10 +219,7 @@ class RankingViewController: UIViewController {
 }
 
 extension RankingViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -228,13 +231,13 @@ extension RankingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(at: indexPath)
         
         // 응답 데이터
-//        let data = responseData[indexPath.row]
-//        cell.userName.text = data.nickname
-//        cell.heartNumber.text = String(data.likeCount)
+        let data = responseData[indexPath.row]
+        cell.userName.text = data.nickname
+        cell.heartNumber.text = String(data.likeCount)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 55
     }
 }

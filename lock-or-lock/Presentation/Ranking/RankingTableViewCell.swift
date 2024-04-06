@@ -79,13 +79,13 @@ class RankingTableViewCell: UITableViewCell {
     
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0))
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
 //    }
     
     private func setLayout() {
         containerView1.snp.makeConstraints {
-            $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
+            $0.centerY.equalToSuperview()
             $0.width.equalTo(50)
             $0.height.equalTo(50)
         }
@@ -99,7 +99,7 @@ class RankingTableViewCell: UITableViewCell {
             $0.top.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.leading.equalTo(containerView1.snp.trailing).offset(10)
-            $0.height.equalTo(55)
+            $0.height.equalTo(50)
         }
         
         userName.snp.makeConstraints {
