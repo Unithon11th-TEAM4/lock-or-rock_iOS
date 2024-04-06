@@ -17,12 +17,7 @@ class QuestionViewController: UIViewController {
     var disposeBag = DisposeBag()
     
     // MARK: - Properties
-    private let questionNumLabel: UILabel = {
-        $0.text = "1/5"
-        $0.font = .boldSystemFont(ofSize: 14)
-        $0.textColor = .black
-        return $0
-    }(UILabel())
+    private let questionNumLabel = PaddingLabel(text: "1/5", font: UIFont.oAGothicExtraBold(size: 18), backgroundColor: .orange, padding: .medium)
     
     private let questionTitleLabel: UILabel = {
         $0.text = "다음 중 지지하는\n 정치사상을 고르세요."

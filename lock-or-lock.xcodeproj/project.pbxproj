@@ -31,6 +31,7 @@
 		47CDEB442BC14F5C008382FD /* WAGURI.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3F2BC14937008382FD /* WAGURI.otf */; };
 		47CDEB452BC14F5F008382FD /* OAGothic-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */; };
 		47CDEB462BC14F62008382FD /* OAGothic-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB402BC14937008382FD /* OAGothic-Medium.otf */; };
+		47CDEB4E2BC15708008382FD /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB4D2BC15708008382FD /* PaddingLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		47CDEB3F2BC14937008382FD /* WAGURI.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WAGURI.otf; sourceTree = "<group>"; };
 		47CDEB402BC14937008382FD /* OAGothic-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OAGothic-Medium.otf"; sourceTree = "<group>"; };
 		47CDEB422BC14978008382FD /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		47CDEB4D2BC15708008382FD /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		47CDEB3B2BC14906008382FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				47CDEB4C2BC156FB008382FD /* Component */,
 				47CDEB412BC1496E008382FD /* Extension */,
 			);
 			path = Common;
@@ -188,6 +191,14 @@
 				47CDEB422BC14978008382FD /* UIFont.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		47CDEB4C2BC156FB008382FD /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB4D2BC15708008382FD /* PaddingLabel.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +301,7 @@
 				47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */,
 				47CDEB432BC14978008382FD /* UIFont.swift in Sources */,
 				47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */,
+				47CDEB4E2BC15708008382FD /* PaddingLabel.swift in Sources */,
 				47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */,
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
 			);
