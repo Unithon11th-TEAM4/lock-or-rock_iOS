@@ -27,6 +27,10 @@
 		47CDEB2D2BC12EAC008382FD /* RxSwift-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB2C2BC12EAC008382FD /* RxSwift-Dynamic */; };
 		47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB352BC13D41008382FD /* QuestionButton.swift */; };
 		47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB392BC13E2E008382FD /* Question.swift */; };
+		47CDEB432BC14978008382FD /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB422BC14978008382FD /* UIFont.swift */; };
+		47CDEB442BC14F5C008382FD /* WAGURI.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3F2BC14937008382FD /* WAGURI.otf */; };
+		47CDEB452BC14F5F008382FD /* OAGothic-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */; };
+		47CDEB462BC14F62008382FD /* OAGothic-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47CDEB402BC14937008382FD /* OAGothic-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,10 @@
 		47CDEB202BC12D79008382FD /* QuestionReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionReactor.swift; sourceTree = "<group>"; };
 		47CDEB352BC13D41008382FD /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
 		47CDEB392BC13E2E008382FD /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OAGothic-ExtraBold.otf"; sourceTree = "<group>"; };
+		47CDEB3F2BC14937008382FD /* WAGURI.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WAGURI.otf; sourceTree = "<group>"; };
+		47CDEB402BC14937008382FD /* OAGothic-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OAGothic-Medium.otf"; sourceTree = "<group>"; };
+		47CDEB422BC14978008382FD /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +93,10 @@
 			isa = PBXGroup;
 			children = (
 				47CDEB0A2BC108E4008382FD /* App */,
+				47CDEB3B2BC14906008382FD /* Common */,
 				47CDEB372BC13E15008382FD /* Domain */,
 				47CDEB0B2BC108F0008382FD /* Presentation */,
+				47CDEB3D2BC14927008382FD /* Font */,
 				47CDEB042BC107DF008382FD /* Info.plist */,
 			);
 			path = "lock-or-lock";
@@ -152,6 +162,32 @@
 				47CDEB392BC13E2E008382FD /* Question.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		47CDEB3B2BC14906008382FD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB412BC1496E008382FD /* Extension */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		47CDEB3D2BC14927008382FD /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB3F2BC14937008382FD /* WAGURI.otf */,
+				47CDEB3E2BC14936008382FD /* OAGothic-ExtraBold.otf */,
+				47CDEB402BC14937008382FD /* OAGothic-Medium.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		47CDEB412BC1496E008382FD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				47CDEB422BC14978008382FD /* UIFont.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +269,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CDEB462BC14F62008382FD /* OAGothic-Medium.otf in Resources */,
+				47CDEB452BC14F5F008382FD /* OAGothic-ExtraBold.otf in Resources */,
+				47CDEB442BC14F5C008382FD /* WAGURI.otf in Resources */,
 				47CDEB002BC107DF008382FD /* Assets.xcassets in Resources */,
 				47CDEB032BC107DF008382FD /* Base in Resources */,
 			);
@@ -249,6 +288,7 @@
 				47CDEAF72BC107DC008382FD /* AppDelegate.swift in Sources */,
 				47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */,
 				47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */,
+				47CDEB432BC14978008382FD /* UIFont.swift in Sources */,
 				47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */,
 				47CDEB3A2BC13E2E008382FD /* Question.swift in Sources */,
 				47CDEAF92BC107DC008382FD /* SceneDelegate.swift in Sources */,
