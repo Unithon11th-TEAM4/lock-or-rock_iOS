@@ -14,13 +14,13 @@ class QuestionReactor: Reactor {
     enum Action {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
-        case questionsResponse(QuestionResponse)
+        case questionsResponse([QuestionResponse])
     }
     
     enum Mutation {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
-        case questionsResponse(QuestionResponse)
+        case questionsResponse([QuestionResponse])
     }
     
     struct State {
@@ -74,15 +74,14 @@ class QuestionReactor: Reactor {
     @MainActor
     func fetchQuestions() {
         Task {
-            let questionsDataResponse = try await questionUseCase.getQuestions()
-            
-            
-            
+            let questionsDataResponse = try await self.questionUseCase.getQuestions()
+            action.onNext(.questionsResponse(questionsDataResponse.data))
         }
     }
     
     func appendAnswer() {
         let currentQuestionNum = currentState.currentQuestionNum
+        let questionsResponse = currentState.questionsResponse
         guard let currentAnswerNum = currentState.currentAnswerNum else { return }
         
         if currentQuestionNum > 5 {
@@ -91,19 +90,42 @@ class QuestionReactor: Reactor {
         
         switch currentAnswerNum {
         case .leftTop:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 0)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[0].answerId))
+            )
         case .rightTop:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 1)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[1].answerId))
+            )
         case .leftBottom:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 2)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[2].answerId))
+            )
         case .rightBottom:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 3)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[3].answerId))
+            )
         }
     }
     
     // TODO: 퀴즈 제출 API 연결
+    @MainActor
     func postAnswer() {
         appendAnswer()
-        print("5개 완료 - \(currentState.answerList)")
+        
+        Task {
+            do {
+                let currentQuestionRequest = currentState.answerList
+                let postQuestionresult = try await questionUseCase.postQuestions(questionRequest: currentQuestionRequest)
+                print(postQuestionresult)
+            } catch {
+                print("post error")
+            }
+        }
+        
     }
 }

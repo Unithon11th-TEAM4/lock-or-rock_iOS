@@ -22,7 +22,7 @@ struct QuestionRepository: QuestionRepositoryInterface {
         }
     }
     
-    func postQuestions(questionRequest: QuestionRequest) async throws -> ReportReponse {
+    func postQuestions(questionRequest: [QuestionRequest]) async throws -> ReportReponse {
         let result = await provider.request(.postQuestions(questionRequest: questionRequest))
         
         switch result {

@@ -10,7 +10,7 @@ import Moya
 
 enum QuestionService {
     case getQuestions
-    case postQuestions(questionRequest: QuestionRequest)
+    case postQuestions(questionRequest: [QuestionRequest])
 }
 
 extension QuestionService: TargetType {

@@ -27,7 +27,7 @@ class QuestionViewController: UIViewController {
     private let questionNumLabel = PaddingLabel(text: "1/5", font: UIFont.oAGothicExtraBold(size: 18), backgroundColor: .primary, padding: .medium)
     
     private let questionTitleLabel: UILabel = {
-        $0.text = "다음 중 지지하는\n 정치사상을 고르세요."
+        $0.text = "퀴즈를 불러오는 중"
         $0.font = UIFont.lockOrLock(font: .oAGothicMedium, size: 20)
         $0.textAlignment = .center
         $0.numberOfLines = 0
@@ -236,9 +236,31 @@ extension QuestionViewController: View {
             .map { $0.currentQuestionNum }
             .bind { [weak self] questionNum in
                 self?.questionNumLabel.text = "\(questionNum)/5"
+                guard let questions = self?.reactor.currentState.questionsResponse else { return }
+                
+                if !questions.isEmpty {
+                    self?.questionTitleLabel.text = questions[questionNum-1].content
+                    self?.leftTopButton.question = questions[questionNum-1].answers[0]
+                    self?.rightTopButton.question = questions[questionNum-1].answers[1]
+                    self?.leftBottomButton.question = questions[questionNum-1].answers[2]
+                    self?.rightBottomButton.question = questions[questionNum-1].answers[3]
+                }
                 
                 if questionNum == 5 {
                     self?.nextButton.setTitle("결과보기", for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.questionsResponse }
+            .bind { [weak self] questions in
+                if !questions.isEmpty {
+                    self?.questionTitleLabel.text = questions[0].content
+                    self?.leftTopButton.question = questions[0].answers[0]
+                    self?.rightTopButton.question = questions[0].answers[1]
+                    self?.leftBottomButton.question = questions[0].answers[2]
+                    self?.rightBottomButton.question = questions[0].answers[3]
                 }
             }
             .disposed(by: disposeBag)
