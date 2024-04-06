@@ -8,6 +8,11 @@
 import Foundation
 
 struct NicknameResponse: Codable {
+    let code: Int
+    let data: NicknameDataResponse
+}
+
+struct NicknameDataResponse: Codable {
     let memberId: Int
     let isDuplicatedNickname: Bool
     

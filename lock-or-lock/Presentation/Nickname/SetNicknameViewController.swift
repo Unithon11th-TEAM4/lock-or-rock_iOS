@@ -206,7 +206,7 @@ class SetNicknameViewController: UIViewController {
             switch result {
             case let .success(response):
                 guard let result = try? response.map(NicknameResponse.self) else { return }
-                TokenManager.shared.saveUserId(userId: result.memberId)
+                TokenManager.shared.saveUserId(userId: result.data.memberId)
                 self?.presentHomeViewController()
                 
             case let .failure(error):
