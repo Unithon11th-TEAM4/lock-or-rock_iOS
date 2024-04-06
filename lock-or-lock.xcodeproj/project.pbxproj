@@ -40,6 +40,8 @@
 		47CDEB5B2BC17D1D008382FD /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 47CDEB5A2BC17D1D008382FD /* Moya */; };
 		47CDEB5D2BC17D4B008382FD /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB5C2BC17D4B008382FD /* NetworkLogger.swift */; };
 		47CDEB602BC17D90008382FD /* NameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB5F2BC17D90008382FD /* NameService.swift */; };
+		47CDEB622BC1807E008382FD /* NicknameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDEB612BC1807E008382FD /* NicknameResponse.swift */; };
+		47D8CA952BC19081001B6D19 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8CA942BC19081001B6D19 /* TokenManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		47CDEB582BC17CC0008382FD /* MoyaProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Extensions.swift"; sourceTree = "<group>"; };
 		47CDEB5C2BC17D4B008382FD /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		47CDEB5F2BC17D90008382FD /* NameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameService.swift; sourceTree = "<group>"; };
+		47CDEB612BC1807E008382FD /* NicknameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameResponse.swift; sourceTree = "<group>"; };
+		47D8CA942BC19081001B6D19 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				47CDEB512BC1653E008382FD /* QuestionRequest.swift */,
+				47CDEB612BC1807E008382FD /* NicknameResponse.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				47CDEB552BC17C6D008382FD /* BaseAPI.swift */,
+				47D8CA942BC19081001B6D19 /* TokenManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 				47CDEB212BC12D79008382FD /* QuestionReactor.swift in Sources */,
 				47CDEB362BC13D41008382FD /* QuestionButton.swift in Sources */,
 				47CDEB432BC14978008382FD /* UIFont.swift in Sources */,
+				47D8CA952BC19081001B6D19 /* TokenManager.swift in Sources */,
 				47CDEB1F2BC12CF3008382FD /* QuestionViewController.swift in Sources */,
 				47CDEB522BC1653E008382FD /* QuestionRequest.swift in Sources */,
 				47CDEB4E2BC15708008382FD /* PaddingLabel.swift in Sources */,
@@ -390,6 +397,7 @@
 				0A4F82542BC1465200119796 /* SetNicknameViewController.swift in Sources */,
 				47CDEB592BC17CC0008382FD /* MoyaProvider+Extensions.swift in Sources */,
 				47CDEB602BC17D90008382FD /* NameService.swift in Sources */,
+				47CDEB622BC1807E008382FD /* NicknameResponse.swift in Sources */,
 				47CDEB562BC17C6D008382FD /* BaseAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,7 +548,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -567,7 +575,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

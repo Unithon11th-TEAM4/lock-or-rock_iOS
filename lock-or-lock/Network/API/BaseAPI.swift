@@ -11,5 +11,5 @@ public final class BaseAPI {
     public static let shared = BaseAPI()
     private init() {}
     
-    public let baseURL = "http://3.36.92.122:8080"
+    public let baseURL = "http://3.36.92.122:8080/api"
 }

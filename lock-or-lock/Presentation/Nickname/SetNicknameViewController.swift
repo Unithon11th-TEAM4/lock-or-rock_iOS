@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Moya
 
 class SetNicknameViewController: UIViewController {
+    
+    let provider = MoyaProvider<NameService>(plugins: [NetworkLogger()])
     
     private let cautionImage = UIImageView().then {
         $0.image = UIImage(named: "caution")
@@ -198,10 +201,25 @@ class SetNicknameViewController: UIViewController {
     }
     
     @objc private func startButtonTapped() {
+        guard let nicknameText = nicknameTextField.text else { return }
+        provider.request(.saveName(nickname: nicknameText)) { [weak self] (result) in
+            switch result {
+            case let .success(response):
+                guard let result = try? response.map(NicknameResponse.self) else { return }
+                TokenManager.shared.saveUserId(userId: result.memberId)
+                self?.presentHomeViewController()
+                
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func presentHomeViewController() {
         let homeVC = HomeViewController()
         let nav = UINavigationController(rootViewController: homeVC)
         nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: false)
+        self.present(nav, animated: false)
     }
     
     func setupKeyboardEvent() {
