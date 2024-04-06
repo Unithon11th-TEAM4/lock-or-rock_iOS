@@ -39,7 +39,7 @@ class RankingTableViewCell: UITableViewCell {
     private let heartNumber = UILabel().then {
         $0.text = "111"
         $0.textColor = UIColor(named: "pink")
-        $0.font = .pretendardMedium(size: 18)
+        $0.font = .waguri(size: 18)
     }
     
     override func awakeFromNib() {
@@ -49,7 +49,7 @@ class RankingTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.backgroundColor = .black
+        self.backgroundColor = UIColor(named: "black")
         addSubViews()
         setLayout()
     }

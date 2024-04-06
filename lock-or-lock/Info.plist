@@ -7,7 +7,6 @@
 		<string>WAGURI.otf</string>
 		<string>OAGothic-Medium.otf</string>
 		<string>OAGothic-ExtraBold.otf</string>
-		<string>Pretendard-Medium.otf</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
