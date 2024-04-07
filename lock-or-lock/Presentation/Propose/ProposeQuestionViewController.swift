@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import Moya
+
+protocol TextFieldCellDelegate: AnyObject {
+    func textFieldDidEndEditing(value: String)
+}
 
 class ProposeQuestionViewController: UIViewController {
+    
+    let provider = MoyaProvider<ProposeService>(plugins: [NetworkLogger()])
+    var questionAnswers: [String] = []
 
     lazy var titleView = UIView().then {
         $0.backgroundColor = UIColor(named: "primary")
@@ -69,7 +77,7 @@ class ProposeQuestionViewController: UIViewController {
         $0.contentHorizontalAlignment = .center
         $0.layer.borderWidth = 3
 //        $0.layer.borderColor = UIColor(named: "gray2")?.cgColor
-        $0.isEnabled = false
+//        $0.isEnabled = false
         $0.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
     }
 
@@ -199,6 +207,34 @@ class ProposeQuestionViewController: UIViewController {
     }
 
     @objc private func submitButtonTapped() {
+        guard let questionTextView = questionTextView.text else { return }
+        
+        for section in 0..<optionTableView.numberOfSections {
+            // 각 섹션의 모든 행을 순회
+            for row in 0..<optionTableView.numberOfRows(inSection: section) {
+                // 현재 indexPath에 해당하는 셀 조회
+                if let cell = optionTableView.cellForRow(at: IndexPath(row: row, section: section)) as? OptionTableViewCell {
+                    questionAnswers.append(cell.optionTextField.text ?? "")
+                }
+            }
+        }
+        
+        let proposedQuestion = ProposedQuestion(
+            memberId: TokenManager.shared.getIntUserId(), questionContent: questionTextView, questionAnswers: questionAnswers)
+        
+        provider.request(.addQuestions(proposedQuestion: proposedQuestion)) { [weak self] (result) in
+            switch result {
+            case let .success(response):
+                guard let result = try? response.map(ProposeResponse.self) else { return }
+                if result.message == "OK" {
+                    print("성공적으로 질문을 등록했당")
+                    let completedQuestionVC = CompletedQuestionViewController()
+                    self?.navigationController?.pushViewController(completedQuestionVC, animated: true)
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -240,11 +276,21 @@ extension ProposeQuestionViewController: UITableViewDelegate, UITableViewDataSou
         
         cell.selectionStyle = .none
         cell.configureCell(at: indexPath)
+        cell.optionTextField.tag = indexPath.row
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+}
+
+extension ProposeQuestionViewController: TextFieldCellDelegate {
+    func textFieldDidEndEditing(value: String) {
+        print(value)
+//        questionAnswers.append(value)
+//        print(questionAnswers)
+//        print("화이팅")
     }
 }

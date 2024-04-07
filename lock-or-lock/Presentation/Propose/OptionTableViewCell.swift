@@ -10,6 +10,7 @@ import UIKit
 class OptionTableViewCell: UITableViewCell {
     
     static let identifier = "OptionTableViewCell"
+    weak var delegate: TextFieldCellDelegate?
     
     private let optionNumber = UILabel().then {
         $0.text = "1"
@@ -38,6 +39,7 @@ class OptionTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor(named: "black")
         addSubViews()
         setLayout()
+        optionTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -76,5 +78,13 @@ class OptionTableViewCell: UITableViewCell {
     func configureCell(at indexPath: IndexPath) {
         var number = String(indexPath.row + 1)
         optionNumber.text = number
+    }
+}
+
+extension OptionTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let textField = optionTextField.text else { return }
+        print(textField)
+        delegate?.textFieldDidEndEditing(value: textField)
     }
 }
