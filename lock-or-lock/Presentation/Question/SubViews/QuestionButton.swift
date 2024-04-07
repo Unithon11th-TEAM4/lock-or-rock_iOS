@@ -7,10 +7,11 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class QuestionButton: UIButton {
     
-    var question: Question? {
+    var question: QuestionAnswerResponse? {
         didSet {
             configure()
         }
@@ -35,7 +36,6 @@ final class QuestionButton: UIButton {
     // MARK: - Set UI
     private func setButton() {
         backgroundColor = .white
-        setTitle("냠냠", for: .normal)
         setTitleColor(.black, for: .normal)
         titleLabel?.font = UIFont.oAGothicExtraBold(size: 20)
         layer.borderWidth = 3
@@ -45,14 +45,19 @@ final class QuestionButton: UIButton {
     }
     
     private func configure() {
-        if let image = question?.image {
-            setImage(image, for: .normal)
-            setTitle(nil, for: .normal)
-        }
+        guard let question else { return }
         
-        if let answer = question?.answer {
+        if question.url != Optional("") {
+            kf.setImage(with: URL(string: question.url ?? ""), for: .normal)
+            setTitle(nil, for: .normal)
+        } else {
+            if question.content.count > 4 {
+                titleLabel?.font = UIFont.waguri(size: 12)
+            } else {
+                titleLabel?.font = UIFont.waguri(size: 20)
+            }
             setImage(nil, for: .normal)
-            setTitle(answer, for: .normal)
+            setTitle(question.content, for: .normal)
         }
     }
     

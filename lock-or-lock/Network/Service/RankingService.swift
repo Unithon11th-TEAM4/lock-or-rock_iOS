@@ -10,6 +10,7 @@ import Moya
 
 enum RankingService {
     case getRanking(memberId: Int)
+    case like(memberId: Int)
 }
 
 extension RankingService: TargetType {
@@ -17,8 +18,10 @@ extension RankingService: TargetType {
     
     public var path: String {
         switch self {
-        case .getRanking(memberId: let member_id):
-            return "leaderboards?member_id=\(member_id)"
+        case .getRanking:
+            return "/leaderboards"
+        case .like:
+            return "/leaderboard/like"
         }
     }
     
@@ -26,13 +29,20 @@ extension RankingService: TargetType {
         switch self {
         case .getRanking:
             return .get
+        case .like:
+            return .post
         }
     }
     
     public var task: Task {
         switch self {
-        case .getRanking:
-            return .requestPlain
+        case .getRanking(let memberId):
+            return .requestParameters(parameters: ["member_id": memberId], encoding: URLEncoding.queryString)
+        case .like(let memberId):
+            let param: [String: Any] = [
+                "member_id": memberId
+            ]
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }
     }
     

@@ -12,7 +12,11 @@ import Moya
 class RankingViewController: UIViewController {
     
     let provider = MoyaProvider<RankingService>(plugins: [NetworkLogger()])
-    var responseData: [Leaderboard] = []
+    var responseData: [Leaderboard] = [] {
+        didSet {
+            rankingTableView.reloadData()
+        }
+    }
     
     private let titleView = UIView().then {
         $0.backgroundColor = UIColor(named: "primary")
@@ -88,7 +92,6 @@ class RankingViewController: UIViewController {
         super.viewDidLoad()
         attribute()
         view.backgroundColor = UIColor(named: "black")
-        setTableView()
         addSubViews()
         setLayout()
         registerCell()
@@ -213,17 +216,14 @@ class RankingViewController: UIViewController {
     }
     
     @objc private func homeButtonTapped() {
-        let homeVC = HomeViewController()
-        let nav = UINavigationController(rootViewController: homeVC)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: false)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
 extension RankingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return responseData.count-1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -233,9 +233,12 @@ extension RankingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(at: indexPath)
         
         // 응답 데이터
-        let data = responseData[indexPath.row]
-        cell.userName.text = data.nickname
-        cell.heartNumber.text = String(data.likeCount)
+        if !responseData.isEmpty {
+            let data = responseData[indexPath.row]
+            cell.userName.text = data.nickname
+            cell.heartNumber.text = String(data.likeCount)
+        }
+        
         return cell
     }
     

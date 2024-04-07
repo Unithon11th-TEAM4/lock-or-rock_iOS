@@ -7,9 +7,8 @@
 
 import Foundation
 
-
-
 struct RankingResponse: Codable {
+    let code: Int
     let data: RankingDto
 }
 
@@ -27,6 +26,19 @@ struct Leaderboard: Codable {
         case rankNo = "rank_no"
         case memberId = "member_id"
         case nickname
+        case likeCount = "like_count"
+    }
+}
+
+struct LikeCountResponse: Codable {
+    let code: Int
+    let data: LikeCountDataResponse
+}
+
+struct LikeCountDataResponse: Codable {
+    let likeCount: Int
+    
+    enum CodingKeys: String, CodingKey {
         case likeCount = "like_count"
     }
 }

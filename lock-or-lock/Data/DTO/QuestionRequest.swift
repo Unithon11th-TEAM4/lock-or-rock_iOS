@@ -9,12 +9,12 @@ import Foundation
 
 // 퀴즈 결과 저장
 struct QuestionListRequest: Codable {
-    let memeberId: Int
-    let quizResult: [QuestionRequest]
+    let memberId: Int
+    let answers: [QuestionRequest]
     
     enum CodingKeys: String, CodingKey {
-        case memeberId
-        case quizResult = "quiz_result"
+        case memberId = "member_id"
+        case answers
     }
 }
 
@@ -28,11 +28,23 @@ struct QuestionRequest: Codable {
     }
 }
 
-// 한줄평
+// 퀴즈 결과 reponse
 struct ReportReponse: Codable {
-    let memberPersonality: String
+    let code: Int
+    let data: ReportDataResponse
+}
+
+struct ReportDataResponse: Codable {
+    let nickname: String
+    let memberPersonality: [memberPersonalityResponse]
     
     enum CodingKeys: String, CodingKey {
+        case nickname
         case memberPersonality = "member_personality"
     }
+}
+
+struct memberPersonalityResponse: Codable {
+    let content: String
+    let verb: String
 }

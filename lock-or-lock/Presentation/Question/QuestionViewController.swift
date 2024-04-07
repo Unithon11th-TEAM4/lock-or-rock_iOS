@@ -27,7 +27,7 @@ class QuestionViewController: UIViewController {
     private let questionNumLabel = PaddingLabel(text: "1/5", font: UIFont.oAGothicExtraBold(size: 18), backgroundColor: .primary, padding: .medium)
     
     private let questionTitleLabel: UILabel = {
-        $0.text = "다음 중 지지하는\n 정치사상을 고르세요."
+        $0.text = "퀴즈를 불러오는 중"
         $0.font = UIFont.lockOrLock(font: .oAGothicMedium, size: 20)
         $0.textAlignment = .center
         $0.numberOfLines = 0
@@ -53,6 +53,14 @@ class QuestionViewController: UIViewController {
         $0.distribution = .fillEqually
         return $0
     }(UIStackView())
+    
+    private let toolTipLabel: UILabel = {
+        $0.text = "한 번 선택하면 되돌릴 수 없어요!"
+        $0.font = UIFont.oAGothicExtraBold(size: 14)
+        $0.textColor = .red
+        $0.isHidden = false
+        return $0
+    }(UILabel())
     
     private let nextButton: UIButton = {
         $0.setTitle("다음질문", for: .normal)
@@ -96,6 +104,7 @@ class QuestionViewController: UIViewController {
             questionTitleLabel,
             topStackView,
             bottomStackView,
+            toolTipLabel,
             nextButton
         ].forEach {
             view.addSubview($0)
@@ -124,6 +133,7 @@ class QuestionViewController: UIViewController {
         
         questionTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(questionNumLabel.snp.bottom).inset(-20)
+            make.leading.trailing.equalToSuperview().inset(40)
             make.centerX.equalToSuperview()
         }
         
@@ -137,6 +147,11 @@ class QuestionViewController: UIViewController {
             make.top.equalTo(topStackView.snp.bottom).inset(-15)
             make.leading.trailing.equalToSuperview().inset(10)
             make.height.equalTo(150)
+        }
+        
+        toolTipLabel.snp.makeConstraints { make in
+            make.top.equalTo(bottomStackView.snp.bottom).inset(-20)
+            make.centerX.equalToSuperview()
         }
         
         nextButton.snp.makeConstraints { make in
@@ -217,10 +232,12 @@ extension QuestionViewController: View {
                         self?.leftBottomButton.isSelected = false
                         self?.rightBottomButton.isSelected = true
                     }
+                    self?.toolTipLabel.isHidden = false
                     self?.nextButton.isEnabled = true
                     self?.nextButton.backgroundColor = .primary
                     self?.nextButton.layer.borderColor = UIColor.black.cgColor
                 } else {
+                    self?.toolTipLabel.isHidden = true
                     self?.leftTopButton.isSelected = false
                     self?.rightTopButton.isSelected = false
                     self?.leftBottomButton.isSelected = false
@@ -236,9 +253,35 @@ extension QuestionViewController: View {
             .map { $0.currentQuestionNum }
             .bind { [weak self] questionNum in
                 self?.questionNumLabel.text = "\(questionNum)/5"
+                guard let questions = self?.reactor.currentState.questionsResponse else { return }
+                
+                if !questions.isEmpty {
+                    self?.questionTitleLabel.text = questions[questionNum-1].content
+                    self?.leftTopButton.question = questions[questionNum-1].answers[0]
+                    self?.rightTopButton.question = questions[questionNum-1].answers[1]
+                    self?.leftBottomButton.question = questions[questionNum-1].answers[2]
+                    self?.rightBottomButton.question = questions[questionNum-1].answers[3]
+                }
                 
                 if questionNum == 5 {
                     self?.nextButton.setTitle("결과보기", for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.issuccessedPost }
+            .bind { [weak self] reportReponse in
+                guard let reportReponse else { return }
+                
+                if let navigationController = self?.navigationController {
+                    navigationController.popViewController(animated: false)
+                    let rankingRepository = RankingRepository()
+                    let rankingUseCase = RankingUseCaseImp(rankingRepository: rankingRepository)
+                    let reportReactor = ReportReactor(reportReponse: reportReponse, rankingUseCase: rankingUseCase)
+                    let reportViewController = ReportViewController(reactor: reportReactor)
+                    reportViewController.modalPresentationStyle = .overFullScreen
+                    navigationController.pushViewController(reportViewController, animated: true)
                 }
             }
             .disposed(by: disposeBag)

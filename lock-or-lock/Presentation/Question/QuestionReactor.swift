@@ -14,17 +14,23 @@ class QuestionReactor: Reactor {
     enum Action {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
+        case questionsResponse([QuestionResponse])
+        case issuccessedPost(ReportReponse)
     }
     
     enum Mutation {
         case answerNumber(QuestionButtonType)
         case appendAnswer(QuestionRequest)
+        case questionsResponse([QuestionResponse])
+        case issuccessedPost(ReportReponse)
     }
     
     struct State {
         var currentAnswerNum: QuestionButtonType?
         var currentQuestionNum: Int = 1
         var answerList: [QuestionRequest] = []
+        var questionsResponse: [QuestionResponse] = []
+        var issuccessedPost: ReportReponse?
     }
     
     var initialState: State
@@ -42,6 +48,10 @@ class QuestionReactor: Reactor {
             return .just(.answerNumber(answerNum))
         case .appendAnswer(let answer):
             return .just(.appendAnswer(answer))
+        case .questionsResponse(let questions):
+            return .just(.questionsResponse(questions))
+        case .issuccessedPost(let reportReponse):
+            return .just(.issuccessedPost(reportReponse))
         }
     }
     
@@ -59,6 +69,10 @@ class QuestionReactor: Reactor {
             }
             newState.currentQuestionNum += 1
             newState.currentAnswerNum = nil
+        case .questionsResponse(let questions):
+            newState.questionsResponse = questions
+        case .issuccessedPost(let reportReponse):
+            newState.issuccessedPost = reportReponse
         }
         
         return newState
@@ -67,12 +81,14 @@ class QuestionReactor: Reactor {
     @MainActor
     func fetchQuestions() {
         Task {
-            let questions = try await questionUseCase.getQuestions()
+            let questionsDataResponse = try await self.questionUseCase.getQuestions()
+            action.onNext(.questionsResponse(questionsDataResponse.data))
         }
     }
     
     func appendAnswer() {
         let currentQuestionNum = currentState.currentQuestionNum
+        let questionsResponse = currentState.questionsResponse
         guard let currentAnswerNum = currentState.currentAnswerNum else { return }
         
         if currentQuestionNum > 5 {
@@ -81,19 +97,39 @@ class QuestionReactor: Reactor {
         
         switch currentAnswerNum {
         case .leftTop:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 0)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[0].answerId))
+            )
         case .rightTop:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 1)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[1].answerId))
+            )
         case .leftBottom:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 2)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[2].answerId))
+            )
         case .rightBottom:
-            action.onNext(.appendAnswer(.init(questionId: currentQuestionNum, answerId: 3)))
+            action.onNext(.appendAnswer(.init(
+                questionId: questionsResponse[currentQuestionNum-1].questionId,
+                answerId: questionsResponse[currentQuestionNum-1].answers[3].answerId))
+            )
         }
     }
     
     // TODO: 퀴즈 제출 API 연결
+    @MainActor
     func postAnswer() {
         appendAnswer()
-        print("5개 완료 - \(currentState.answerList)")
+        
+        Task {
+            let currentQuestionRequest = self.currentState.answerList
+            let memberId = TokenManager.shared.getIntUserId()
+            let questionListRequest = QuestionListRequest(memberId: memberId, answers: currentQuestionRequest)
+            let postQuestionresult = try await questionUseCase.postQuestions(questionRequest: questionListRequest)
+            action.onNext(.issuccessedPost(postQuestionresult))
+        }
     }
 }

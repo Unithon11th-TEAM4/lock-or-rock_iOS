@@ -72,12 +72,21 @@ class HomeViewController: UIViewController {
         $0.titleLabel?.font = .waguri(size: 18)
         $0.addTarget(self, action: #selector(proposeQuestionButtonTapped), for: .touchUpInside)
     }
+    
+    private let logoutButton: UIButton = {
+        $0.setTitle("로그아웃", for: .normal)
+        $0.titleLabel?.font = UIFont.oAGothicExtraBold(size: 16)
+        $0.setTitleColor(.white, for: .normal)
+        $0.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        return $0
+    }(UIButton())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "black")
         addSubViews()
         setupLayout()
+        setNavigationBar()
     }
     
     private func addSubViews() {
@@ -87,6 +96,7 @@ class HomeViewController: UIViewController {
          backgroundImage,
          mainImage,
          startQuestionButton,
+         logoutButton,
          checkRankgingButton,
          proposeQuestionButton].forEach { view.addSubview($0) }
     }
@@ -126,6 +136,13 @@ class HomeViewController: UIViewController {
             $0.height.equalTo(84)
         }
         
+        logoutButton.snp.makeConstraints { make in
+            make.bottom.equalTo(startQuestionButton.snp.top).inset(-17)
+            make.trailing.equalToSuperview().inset(15)
+            make.height.equalTo(30)
+            make.width.equalTo(100)
+        }
+        
         checkRankgingButton.snp.makeConstraints {
             $0.leading.equalTo(view.snp.leading).offset(15)
             $0.top.equalTo(startQuestionButton.snp.bottom).offset(30)
@@ -141,18 +158,34 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func setNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .white
+        navigationItem.backBarButtonItem = backBarButtonItem
+    }
+    
     @objc func startQuestionButtonTapped() {
-//        let questionVC = QuestionViewController()
-//        self.navigationController?.pushViewController(questionVC, animated: true)
+        let questionRepository = QuestionRepository()
+        let questionUseCase = QuestionUseCaseImp(questionRepository: questionRepository)
+        let questionReactor = QuestionReactor(questionUseCase: questionUseCase)
+        let questionViewController = QuestionViewController(reactor: questionReactor)
+        self.navigationController?.pushViewController(questionViewController, animated: true)
     }
     
     @objc func proposeQuestionButtonTapped() {
-//        let proposeQuizVC = proposeQuizViewController()
-//        self.navigationController?.pushViewController(proposeQuizVC, animated: true)
+        let proposeQuestionVC = ProposeQuestionViewController()
+        self.navigationController?.pushViewController(proposeQuestionVC, animated: true)
     }
     
     @objc func checkRankgingButtonTappend() {
-//        let leaderBoardVC = RankingViewController()
-//        self.navigationController?.pushViewController(leaderBoardVC, animated: true)
+        let leaderBoardVC = RankingViewController()
+        self.navigationController?.pushViewController(leaderBoardVC, animated: true)
+    }
+    
+    @objc func logoutButtonTapped() {
+        TokenManager.shared.resetUserId()
+        let nav = UINavigationController(rootViewController: SetNicknameViewController())
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: false)
     }
 }

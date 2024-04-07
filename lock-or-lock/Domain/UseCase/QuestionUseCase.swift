@@ -8,18 +8,18 @@
 import Foundation
 
 protocol QuestionUseCase {
-    func getQuestions() async throws -> QuestionResponse
-    func postQuestions(questionRequest: QuestionRequest) async throws -> ReportReponse
+    func getQuestions() async throws -> SearchQuestionResponse
+    func postQuestions(questionRequest: QuestionListRequest) async throws -> ReportReponse
 }
 
 struct QuestionUseCaseImp: QuestionUseCase {
     private(set) var questionRepository: QuestionRepositoryInterface
     
-    func getQuestions() async throws -> QuestionResponse {
+    func getQuestions() async throws -> SearchQuestionResponse {
         try await questionRepository.getQuestions()
     }
     
-    func postQuestions(questionRequest: QuestionRequest) async throws -> ReportReponse {
+    func postQuestions(questionRequest: QuestionListRequest) async throws -> ReportReponse {
         try await questionRepository.postQuestions(questionRequest: questionRequest)
     }
 }

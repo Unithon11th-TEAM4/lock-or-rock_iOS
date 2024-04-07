@@ -32,6 +32,7 @@ class RankingTableViewCell: UITableViewCell {
     
     let userName = UILabel().then {
         $0.text = "행복한다람쥐"
+        $0.textColor = .black
         $0.font = .oAGothicMedium(size: 18)
     }
     
