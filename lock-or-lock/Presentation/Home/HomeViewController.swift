@@ -84,7 +84,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "black")
-        
         addSubViews()
         setupLayout()
         setNavigationBar()
@@ -174,8 +173,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func proposeQuestionButtonTapped() {
-//        let proposeQuizVC = proposeQuizViewController()
-//        self.navigationController?.pushViewController(proposeQuizVC, animated: true)
+        let proposeQuestionVC = ProposeQuestionViewController()
+        self.navigationController?.pushViewController(proposeQuestionVC, animated: true)
     }
     
     @objc func checkRankgingButtonTappend() {
