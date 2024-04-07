@@ -87,6 +87,7 @@ class HomeViewController: UIViewController {
         
         addSubViews()
         setupLayout()
+        setNavigationBar()
     }
     
     private func addSubViews() {
@@ -158,6 +159,12 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func setNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .white
+        navigationItem.backBarButtonItem = backBarButtonItem
+    }
+    
     @objc func startQuestionButtonTapped() {
         let questionRepository = QuestionRepository()
         let questionUseCase = QuestionUseCaseImp(questionRepository: questionRepository)
@@ -172,8 +179,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func checkRankgingButtonTappend() {
-//        let leaderBoardVC = RankingViewController()
-//        self.navigationController?.pushViewController(leaderBoardVC, animated: true)
+        let leaderBoardVC = RankingViewController()
+        self.navigationController?.pushViewController(leaderBoardVC, animated: true)
     }
     
     @objc func logoutButtonTapped() {

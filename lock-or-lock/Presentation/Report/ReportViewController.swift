@@ -64,7 +64,7 @@ class ReportViewController: UIViewController {
         addView()
         setLayout()
         bind(reactor: reactor)
-        
+        setNavigationBar()
     }
     
     // MARK: - Set UI
@@ -116,6 +116,12 @@ class ReportViewController: UIViewController {
             make.height.equalTo(64)
         }
     }
+    
+    private func setNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .label
+        navigationItem.backBarButtonItem = backBarButtonItem
+    }
 }
 
 // MARK: - Bind
@@ -152,6 +158,14 @@ extension ReportViewController: View {
                         print("User doesn't have instagram on their device.")
                     }
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        rankingButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] _ in
+                let rankingViewController = RankingViewController()
+                self?.navigationController?.pushViewController(rankingViewController, animated: true)
             }
             .disposed(by: disposeBag)
     }

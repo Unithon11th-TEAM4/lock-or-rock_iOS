@@ -216,10 +216,7 @@ class RankingViewController: UIViewController {
     }
     
     @objc private func homeButtonTapped() {
-        let homeVC = HomeViewController()
-        let nav = UINavigationController(rootViewController: homeVC)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: false)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
